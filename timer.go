@@ -48,24 +48,24 @@ type ResetMsg struct {
 	id int
 }
 
-// []cmd:
-// []start
-// [] stop
-// [] reset
+// [x]cmd:
+// [x]start
+// [x] stop
+// [x] reset
 
 func (m Model) ID() int {
 	return m.id
 }
 
-func (m Model) Start() tea.Cmd {
+func (m Model) StartCmd() tea.Cmd {
 	return m.startStop(true)
 }
 
-func (m Model) Stop() tea.Cmd {
+func (m Model) StopCmd() tea.Cmd {
 	return m.startStop(false)
 }
 
-func (m Model) Reset() tea.Cmd {
+func (m Model) ResetCmd() tea.Cmd {
 	return func() tea.Msg {
 		return ResetMsg{id: m.id}
 	}
@@ -75,6 +75,11 @@ func (m Model) startStop(v bool) tea.Cmd {
 	return func() tea.Msg {
 		return StartStopMsg{id: m.id, running: v}
 	}
+}
+
+func (m Model) reset() {
+	m.Running = false
+	m.SessionTime = 0
 }
 
 func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
