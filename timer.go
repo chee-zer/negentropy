@@ -1,15 +1,19 @@
 package main
 
 import (
+	"sync/atomic"
 	"time"
 
 	tea "github.com/charmbracelet/bubbletea"
 )
 
+var lastID int64
+
 type Model struct {
 	Label       string
-	Running     bool
+	running     bool
 	id          int
+	tag         int
 	Interval    time.Duration
 	SessionTime time.Duration
 }
@@ -20,7 +24,7 @@ func (m Model) Init() tea.Cmd {
 
 func (m Model) tick() tea.Cmd {
 	return tea.Tick(m.Interval, func(_ time.Time) tea.Msg {
-		return TickMsg{id: m.id}
+		return TickMsg{id: m.id, tag: m.tag}
 	})
 }
 
@@ -41,7 +45,8 @@ type StartStopMsg struct {
 }
 
 type TickMsg struct {
-	id int
+	id  int
+	tag int
 }
 
 type ResetMsg struct {
@@ -77,15 +82,59 @@ func (m Model) startStop(v bool) tea.Cmd {
 	}
 }
 
-func (m Model) reset() {
-	m.Running = false
-	m.SessionTime = 0
+func NewTimer(label string) Model {
+	return Model{
+		id:       nextID(),
+		Label:    label,
+		running:  false,
+		Interval: time.Second,
+	}
 }
 
+// helper funcs
+// concurrent safe incrementer because.
+func nextID() int {
+	return int(atomic.AddInt64(&lastID, 1))
+}
+
+func (m *Model) reset() {
+	m.running = false
+	m.SessionTime = 0
+	m.tag++
+}
+
+// tag's purpose is to prevent race conditions. Here it'll be incremented everytime user resets.
+// This will prevent the bug where the user maybe uses a macro to reset and start immediately.
+// just for that tho, there is no functionality to change tick interval duration for now(no reason to do that in a productivity timer)
+// So we'll just check the tag in tickmsg case
 func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
-	return nil, nil
+	switch msg := msg.(type) {
+	case StartStopMsg:
+		// id 0 is master control
+		if msg.id != 0 && msg.id != m.id {
+			return m, nil
+		}
+		m.running = msg.running
+		return m, m.tick()
+
+	case ResetMsg:
+		if m.id != 0 && m.id != msg.id {
+			return m, nil
+		}
+		m.reset()
+		return m, nil
+
+	case TickMsg:
+		if !m.running || m.tag != msg.tag || m.id != msg.id {
+			return m, nil
+		}
+		m.SessionTime += m.Interval
+		return m, m.tick()
+	}
+	return m, nil
 }
 
 func (m Model) View() string {
-	return ""
+
+	return m.SessionTime.String()
 }
