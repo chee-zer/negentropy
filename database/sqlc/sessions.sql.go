@@ -8,23 +8,71 @@ package db
 import (
 	"context"
 	"database/sql"
-	"time"
 )
 
+const endSession = `-- name: EndSession :one
+UPDATE sessions 
+SET end_time = ?
+WHERE task_id = ?
+RETURNING id, start_time, end_time, task_id
+`
+
+type EndSessionParams struct {
+	EndTime sql.NullString `json:"end_time"`
+	TaskID  int64          `json:"task_id"`
+}
+
+func (q *Queries) EndSession(ctx context.Context, arg EndSessionParams) (Session, error) {
+	row := q.db.QueryRowContext(ctx, endSession, arg.EndTime, arg.TaskID)
+	var i Session
+	err := row.Scan(
+		&i.ID,
+		&i.StartTime,
+		&i.EndTime,
+		&i.TaskID,
+	)
+	return i, err
+}
+
 const getDailyTaskDurations = `-- name: GetDailyTaskDurations :many
-SELECT task_id, SUM(duration_seconds) as total_duration
-FROM sessions
-WHERE DATE(start_time) = CURRENT_DATE
+SELECT task_id, SUM(duration_seconds) as total_seconds
+FROM (
+    -- the session that spans two days will be stored in db as a single session, but will be divided between 2 days inside the app
+    -- also this is for anyday, not just today. will make wrappers for this query inside app instead.
+    -- '?' arg is the queried date
+    -- 1. sessions spanning single day, day x
+    SELECT s.task_id, 
+    strftime('%s', s.end_time) - strftime('%s', s.start_time) AS duration_seconds
+    FROM sessions AS s
+    WHERE s.start_time >= ?1 
+    AND s.end_time < strftime('%s', ?1, '+1 day', 'start of day')
+    UNION ALL
+    -- 2. sessions spanning two days, started on day x (not accounting for sessions spanning more than 2 days)
+    SELECT s.task_id, 
+    strftime('%s', ?1, '+1 day', 'start of day') - strftime('%s', start_time) AS duration_seconds
+    FROM sessions AS s
+    WHERE date(s.start_time) = date(?1) 
+    AND date(s.end_time) = date(?1, '+1 day')
+    OR s.end_time IS NULL
+    UNION ALL
+
+    --3. sessions spanning two days, ending on day x
+    SELECT s.task_id, 
+    strftime('%s', s.end_time) - strftime('%s', ?1, 'start of day') AS duration_seconds
+    FROM sessions AS s
+    WHERE date(s.start_time) = date(?1, '-1 day') 
+    AND date(s.end_time) = date(?1)
+) AS daily_sessions
 GROUP BY task_id
 `
 
 type GetDailyTaskDurationsRow struct {
-	TaskID        int64           `json:"task_id"`
-	TotalDuration sql.NullFloat64 `json:"total_duration"`
+	TaskID       int64           `json:"task_id"`
+	TotalSeconds sql.NullFloat64 `json:"total_seconds"`
 }
 
-func (q *Queries) GetDailyTaskDurations(ctx context.Context) ([]GetDailyTaskDurationsRow, error) {
-	rows, err := q.db.QueryContext(ctx, getDailyTaskDurations)
+func (q *Queries) GetDailyTaskDurations(ctx context.Context, queryDate string) ([]GetDailyTaskDurationsRow, error) {
+	rows, err := q.db.QueryContext(ctx, getDailyTaskDurations, queryDate)
 	if err != nil {
 		return nil, err
 	}
@@ -32,7 +80,7 @@ func (q *Queries) GetDailyTaskDurations(ctx context.Context) ([]GetDailyTaskDura
 	var items []GetDailyTaskDurationsRow
 	for rows.Next() {
 		var i GetDailyTaskDurationsRow
-		if err := rows.Scan(&i.TaskID, &i.TotalDuration); err != nil {
+		if err := rows.Scan(&i.TaskID, &i.TotalSeconds); err != nil {
 			return nil, err
 		}
 		items = append(items, i)
@@ -46,36 +94,15 @@ func (q *Queries) GetDailyTaskDurations(ctx context.Context) ([]GetDailyTaskDura
 	return items, nil
 }
 
-const getTaskDurationForPeriod = `-- name: GetTaskDurationForPeriod :one
-SELECT SUM(duration_seconds) as total_duration
-FROM sessions
-WHERE task_id = ?
-AND start_time >= ?
-AND start_time <= ?
-`
-
-type GetTaskDurationForPeriodParams struct {
-	TaskID      int64     `json:"task_id"`
-	StartTime   time.Time `json:"start_time"`
-	StartTime_2 time.Time `json:"start_time_2"`
-}
-
-func (q *Queries) GetTaskDurationForPeriod(ctx context.Context, arg GetTaskDurationForPeriodParams) (sql.NullFloat64, error) {
-	row := q.db.QueryRowContext(ctx, getTaskDurationForPeriod, arg.TaskID, arg.StartTime, arg.StartTime_2)
-	var total_duration sql.NullFloat64
-	err := row.Scan(&total_duration)
-	return total_duration, err
-}
-
 const startSession = `-- name: StartSession :one
 INSERT INTO sessions (start_time, task_id)
 VALUES (?, ?)
-RETURNING id, start_time, duration_seconds, task_id
+RETURNING id, start_time, end_time, task_id
 `
 
 type StartSessionParams struct {
-	StartTime time.Time `json:"start_time"`
-	TaskID    int64     `json:"task_id"`
+	StartTime string `json:"start_time"`
+	TaskID    int64  `json:"task_id"`
 }
 
 func (q *Queries) StartSession(ctx context.Context, arg StartSessionParams) (Session, error) {
@@ -84,7 +111,7 @@ func (q *Queries) StartSession(ctx context.Context, arg StartSessionParams) (Ses
 	err := row.Scan(
 		&i.ID,
 		&i.StartTime,
-		&i.DurationSeconds,
+		&i.EndTime,
 		&i.TaskID,
 	)
 	return i, err

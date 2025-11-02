@@ -6,14 +6,13 @@ package db
 
 import (
 	"database/sql"
-	"time"
 )
 
 type Session struct {
-	ID              int64         `json:"id"`
-	StartTime       time.Time     `json:"start_time"`
-	DurationSeconds sql.NullInt64 `json:"duration_seconds"`
-	TaskID          int64         `json:"task_id"`
+	ID        int64          `json:"id"`
+	StartTime string         `json:"start_time"`
+	EndTime   sql.NullString `json:"end_time"`
+	TaskID    int64          `json:"task_id"`
 }
 
 type Task struct {
