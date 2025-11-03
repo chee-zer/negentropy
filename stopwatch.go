@@ -29,8 +29,8 @@ func (m Model) tick() tea.Cmd {
 }
 
 // TODO: for Update
-// [] handle play/pause
-// [] reset(with prompt-reset just adds into entropy)
+// [x] handle play/pause
+// [x] reset(with prompt-reset just adds into entropy)
 // [] complete task (later)
 
 // actually i cannot reuse the timer bubble, its a countdown timer and i need to make a normal timer. Whatever thats called
@@ -110,7 +110,7 @@ func (m *Model) reset() {
 func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch msg := msg.(type) {
 	case StartStopMsg:
-		// id 0 is master control
+		// id 0 is master control (no use for now)
 		if msg.id != 0 && msg.id != m.id {
 			return m, nil
 		}
