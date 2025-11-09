@@ -24,7 +24,7 @@ func (m Model) Init() tea.Cmd {
 
 func (m Model) tick() tea.Cmd {
 	return tea.Tick(m.Interval, func(_ time.Time) tea.Msg {
-		return TickMsg{id: m.id, tag: m.tag}
+		return TickMsg{Id: m.id, Tag: m.tag}
 	})
 }
 
@@ -40,17 +40,17 @@ func (m Model) tick() tea.Cmd {
 // [x] tick
 
 type StartStopMsg struct {
-	id      int
-	running bool
+	Id      int
+	Running bool
 }
 
 type TickMsg struct {
-	id  int
-	tag int
+	Id  int
+	Tag int
 }
 
 type ResetMsg struct {
-	id int
+	Id int
 }
 
 // [x]cmd:
@@ -72,13 +72,13 @@ func (m Model) StopCmd() tea.Cmd {
 
 func (m Model) ResetCmd() tea.Cmd {
 	return func() tea.Msg {
-		return ResetMsg{id: m.id}
+		return ResetMsg{Id: m.id}
 	}
 }
 
 func (m Model) startStop(v bool) tea.Cmd {
 	return func() tea.Msg {
-		return StartStopMsg{id: m.id, running: v}
+		return StartStopMsg{Id: m.id, Running: v}
 	}
 }
 
@@ -115,21 +115,21 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch msg := msg.(type) {
 	case StartStopMsg:
 		// id 0 is master control (no use for now)
-		if msg.id != 0 && msg.id != m.id {
+		if msg.Id != 0 && msg.Id != m.id {
 			return m, nil
 		}
-		m.running = msg.running
+		m.running = msg.Running
 		return m, m.tick()
 
 	case ResetMsg:
-		if m.id != 0 && m.id != msg.id {
+		if m.id != 0 && m.id != msg.Id {
 			return m, nil
 		}
 		m.reset()
 		return m, nil
 
 	case TickMsg:
-		if !m.running || m.tag != msg.tag || m.id != msg.id {
+		if !m.running || m.tag != msg.Tag || m.id != msg.Id {
 			return m, nil
 		}
 		m.SessionTime += m.Interval
