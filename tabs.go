@@ -22,5 +22,9 @@ func (m TabModel) Update(msg tea.Msg) (tea.Cmd, tea.Model) {
 }
 
 func (m TabModel) View() string {
-	return ""
+	return "tabs here"
+}
+
+func (m TabModel) SwitchTabs(dir int) {
+
 }

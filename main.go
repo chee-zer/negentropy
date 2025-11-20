@@ -10,6 +10,7 @@ import (
 	"github.com/charmbracelet/bubbles/key"
 	tea "github.com/charmbracelet/bubbletea"
 	db "github.com/chee-zer/negentropy/database/sqlc"
+	_ "github.com/mattn/go-sqlite3"
 )
 
 // type model struct {
@@ -23,7 +24,11 @@ type model struct {
 	tasks        []db.Task
 	activeTaskId int
 	timerRunning bool
+	statusQuote  string
+	help         string
+	//tabs         TabModel
 	//timer stopwatch.Model
+	quitting bool
 }
 
 // global keymap
@@ -44,12 +49,19 @@ type keymap struct {
 
 func NewModel(queries *db.Queries) model {
 	tasks, err := queries.GetTasks(context.Background())
+
 	if err != nil {
 		log.Fatalf("couldn't not load tasks: %v", err)
 	}
+
 	return model{
-		db:    queries,
-		tasks: tasks,
+		db:           queries,
+		tasks:        tasks,
+		activeTaskId: 0,
+		timerRunning: false,
+		statusQuote:  "this is status quote",
+		help:         "this is help string",
+		quitting:     false,
 	}
 }
 
@@ -58,26 +70,50 @@ func (m model) Init() tea.Cmd {
 }
 
 func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
-	/*
-		keyMsg handling
-		if no task is created, prompt user to create new task, only 'n' is allowed
-		 check if timer running, then split the keyMsgs
-		if timer running:
-		[] - only start stop allowed
-		[] - reset only when timer stopped, so display a message showing so
-		[] - same with navigation tasks(a, d, h, l, left, right), show message
-		if timer not running:
-		[] - navigation (a, d, h, l, left, right) for navigating tabs
-		[] - n - opens a text prompt and creates new task
-		[] - x - open a prompt to confirm deletion of task. the records wont be deleted, and the if the task with same name is created, it gets restored
-		[] - start stop also allowed
-		[] - quit (q)
-	*/
-	return nil, nil
+	switch msg := msg.(type) {
+	case tea.KeyMsg:
+		/*
+			keyMsg handling
+			if no task is created, prompt user to create new task, only 'n' is allowed
+			 check if timer running, then split the keyMsgs
+			if timer running:
+			[] - only start stop allowed
+			[] - reset only when timer stopped, so display a message showing so
+			[] - same with navigation tasks(a, d, h, l, left, right), show message
+			if timer not running:
+			[] - navigation (a, d, h, l, left, right) for navigating tabs
+			[] - n - opens a text prompt and creates new task
+			[] - x - open a prompt to confirm deletion of task. the records wont be deleted, and the if the task with same name is created, it gets restored
+			[] - start stop also allowed
+			[] - quit (q)
+		*/
+		switch msg.String() {
+		case "ctrl+c", "q":
+			m.quitting = true
+			return m, tea.Quit
+		}
+	}
+
+	if len(m.tasks) == 0 {
+		return m.NoTaskView(), nil
+	}
+
+	return m, nil
 }
 
 func (m model) View() string {
-	return ""
+	if len(m.tasks) == 0 {
+		return fmt.Sprintf("\n  %s\n\n  %s\n", m.statusQuote, m.help)
+	}
+	if m.quitting {
+		return "quitting negetropy!"
+	}
+	return fmt.Sprintf("Active Task ID: %d", m.activeTaskId)
+}
+
+func (m model) NoTaskView() model {
+	m.statusQuote = "No tasks found :( Press 'n' to create a new task!"
+	return m
 }
 
 func main() {
@@ -88,7 +124,9 @@ func main() {
 	defer sqlitedb.Close()
 
 	queries := db.New(sqlitedb)
+
 	p := tea.NewProgram(NewModel(queries))
+
 	if _, err := p.Run(); err != nil {
 		fmt.Printf("could'nt run program: %v", err)
 		os.Exit(1)
