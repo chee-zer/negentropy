@@ -10,6 +10,7 @@ import (
 	"github.com/charmbracelet/bubbles/key"
 	tea "github.com/charmbracelet/bubbletea"
 	db "github.com/chee-zer/negentropy/database/sqlc"
+	"github.com/chee-zer/negentropy/stopwatch"
 	_ "github.com/mattn/go-sqlite3"
 )
 
@@ -70,6 +71,8 @@ func (m model) Init() tea.Cmd {
 }
 
 func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
+	// check for no tasks here, basically nothing can be done if zero tasks
+
 	switch msg := msg.(type) {
 	case tea.KeyMsg:
 		/*
@@ -89,8 +92,20 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		*/
 		switch msg.String() {
 		case "ctrl+c", "q":
-			m.quitting = true
-			return m, tea.Quit
+
+			if m.timerRunning {
+				m.help = "Please end your session before quitting the app. Press Spacebar/enter to pause the timer"
+				return m, nil
+			} else {
+				m.quitting = true
+				return m, tea.Quit
+			}
+		case " ", "enter":
+			// if program is here, there should not be zero tasks, so no checks required
+			 newTimer := 
+
+			m.timerRunning = !m.timerRunning
+			return m, nil
 		}
 	}
 
@@ -108,12 +123,24 @@ func (m model) View() string {
 	if m.quitting {
 		return "quitting negetropy!"
 	}
-	return fmt.Sprintf("Active Task ID: %d", m.activeTaskId)
+	return fmt.Sprintf("Active Task ID: %d\n  %s\n\n  %s\n", m.activeTaskId, m.statusQuote, m.help)
 }
 
 func (m model) NoTaskView() model {
 	m.statusQuote = "No tasks found :( Press 'n' to create a new task!"
 	return m
+}
+
+func (m model) GetTaskMap() [int]string {
+	tasks, err := m.db.GetTasks(context.Background()) 
+	if err != nil {
+		log.Fatalf("couldn't not load tasks: %v", err)
+	}
+	taskMap := make(map[int]string)
+	for _, v := range tasks {
+		taskMap[int(v.ID)] = v.Name
+	}
+	return tasks
 }
 
 func main() {
