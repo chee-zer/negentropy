@@ -10,19 +10,12 @@ import (
 	"github.com/charmbracelet/bubbles/key"
 	tea "github.com/charmbracelet/bubbletea"
 	db "github.com/chee-zer/negentropy/database/sqlc"
-	"github.com/chee-zer/negentropy/stopwatch"
 	_ "github.com/mattn/go-sqlite3"
 )
 
-// type model struct {
-// 	tabs  Tabs
-// 	timer Model
-// 	// bar Bar
-// }
-
 type model struct {
 	db           *db.Queries
-	tasks        []db.Task
+	tasks        map[int]db.Task
 	activeTaskId int
 	timerRunning bool
 	statusQuote  string
@@ -49,15 +42,14 @@ type keymap struct {
 }
 
 func NewModel(queries *db.Queries) model {
-	tasks, err := queries.GetTasks(context.Background())
-
+	taskMap, err := GetTaskMap(queries)
 	if err != nil {
 		log.Fatalf("couldn't not load tasks: %v", err)
 	}
 
 	return model{
 		db:           queries,
-		tasks:        tasks,
+		tasks:        taskMap,
 		activeTaskId: 0,
 		timerRunning: false,
 		statusQuote:  "this is status quote",
@@ -102,7 +94,6 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			}
 		case " ", "enter":
 			// if program is here, there should not be zero tasks, so no checks required
-			 newTimer := 
 
 			m.timerRunning = !m.timerRunning
 			return m, nil
@@ -131,16 +122,16 @@ func (m model) NoTaskView() model {
 	return m
 }
 
-func (m model) GetTaskMap() [int]string {
-	tasks, err := m.db.GetTasks(context.Background()) 
+func GetTaskMap(queries *db.Queries) (map[int]db.Task, error) {
+	tasks, err := queries.GetTasks(context.Background())
 	if err != nil {
-		log.Fatalf("couldn't not load tasks: %v", err)
+		return nil, err
 	}
-	taskMap := make(map[int]string)
+	taskMap := make(map[int]db.Task)
 	for _, v := range tasks {
-		taskMap[int(v.ID)] = v.Name
+		taskMap[int(v.ID)] = v
 	}
-	return tasks
+	return taskMap, nil
 }
 
 func main() {
