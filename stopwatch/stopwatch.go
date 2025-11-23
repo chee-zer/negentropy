@@ -91,6 +91,12 @@ func NewTimer(label string) Model {
 	}
 }
 
+func NewTimerRunning(label string) Model {
+	m := NewTimer(label)
+	m.running = true
+	return m
+}
+
 // helper funcs
 // concurrent safe incrementer because.
 func nextID() int {
@@ -119,7 +125,10 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			return m, nil
 		}
 		m.running = msg.Running
-		return m, m.tick()
+		if m.running {
+			return m, m.tick()
+		}
+		return m, nil
 
 	case ResetMsg:
 		if m.id != 0 && m.id != msg.Id {
