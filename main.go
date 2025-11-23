@@ -19,7 +19,6 @@ type model struct {
 	db           *db.Queries
 	tasks        map[int64]db.Task
 	activeTaskId int64
-	timerRunning bool
 	statusQuote  string
 	help         string
 	//tabs         TabModel
@@ -56,7 +55,6 @@ func NewModel(queries *db.Queries) model {
 		db:             queries,
 		tasks:          taskMap,
 		activeTaskId:   0,
-		timerRunning:   false,
 		statusQuote:    "this is status quote",
 		help:           "this is help string",
 		quitting:       false,
@@ -88,7 +86,7 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			[] - start stop also allowed
 			[] - quit (q)
 		*/
-		if m.timerRunning {
+		if m.timer.IsRunning() {
 			//TIMER RUNNING
 			switch msg.String() {
 			case "ctrl+c", "q":
@@ -117,11 +115,10 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 					return m, nil
 				}
 
-				if m.timerRunning {
-					// stop session
+				if m.timer.IsRunning() {
+					return m.StopSession(), m.timer.StopCmd()
 				} else {
-					m.StartSession()
-					m.timerRunning = !m.timerRunning
+					return m.StartSession(), m.timer.StartCmd()
 				}
 
 				return m, nil
@@ -177,9 +174,22 @@ func (m model) StartSession() model {
 		m.statusQuote = "Couldn't start session: " + err.Error()
 		return m
 	}
-	timer := stopwatch.NewTimer(m.tasks[taskID].Name)
+	timer := stopwatch.NewTimerRunning(m.tasks[taskID].Name)
 	m.timer = timer
 	m.currentSession = &session
+	return m
+}
+
+func (m model) StopSession() model {
+	taskID := m.activeTaskId
+	m.timer.StopCmd()
+	endTime := time.Now().Format("2006-01-02 15:04:05")
+	endSessionParams := db.EndSessionParams{
+		EndTime: sql.NullString{String: endTime, Valid: true},
+		TaskID:  taskID,
+	}
+	m.db.EndSession(context.Background(), endSessionParams)
+
 	return m
 }
 
