@@ -6,23 +6,26 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"time"
 
 	"github.com/charmbracelet/bubbles/key"
 	tea "github.com/charmbracelet/bubbletea"
 	db "github.com/chee-zer/negentropy/database/sqlc"
+	"github.com/chee-zer/negentropy/stopwatch"
 	_ "github.com/mattn/go-sqlite3"
 )
 
 type model struct {
 	db           *db.Queries
-	tasks        map[int]db.Task
-	activeTaskId int
+	tasks        map[int64]db.Task
+	activeTaskId int64
 	timerRunning bool
 	statusQuote  string
 	help         string
 	//tabs         TabModel
-	//timer stopwatch.Model
-	quitting bool
+	timer          stopwatch.Model
+	quitting       bool
+	currentSession *db.Session
 }
 
 // global keymap
@@ -47,14 +50,18 @@ func NewModel(queries *db.Queries) model {
 		log.Fatalf("couldn't not load tasks: %v", err)
 	}
 
+	dummyTimer := stopwatch.NewTimer("dummy")
+
 	return model{
-		db:           queries,
-		tasks:        taskMap,
-		activeTaskId: 0,
-		timerRunning: false,
-		statusQuote:  "this is status quote",
-		help:         "this is help string",
-		quitting:     false,
+		db:             queries,
+		tasks:          taskMap,
+		activeTaskId:   0,
+		timerRunning:   false,
+		statusQuote:    "this is status quote",
+		help:           "this is help string",
+		quitting:       false,
+		timer:          dummyTimer,
+		currentSession: nil,
 	}
 }
 
@@ -63,14 +70,13 @@ func (m model) Init() tea.Cmd {
 }
 
 func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
-	// check for no tasks here, basically nothing can be done if zero tasks
 
 	switch msg := msg.(type) {
 	case tea.KeyMsg:
 		/*
 			keyMsg handling
 			if no task is created, prompt user to create new task, only 'n' is allowed
-			 check if timer running, then split the keyMsgs
+			check if timer running, then split the keyMsgs
 			if timer running:
 			[] - only start stop allowed
 			[] - reset only when timer stopped, so display a message showing so
@@ -82,26 +88,52 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			[] - start stop also allowed
 			[] - quit (q)
 		*/
-		switch msg.String() {
-		case "ctrl+c", "q":
-
-			if m.timerRunning {
+		if m.timerRunning {
+			//TIMER RUNNING
+			switch msg.String() {
+			case "ctrl+c", "q":
 				m.help = "Please end your session before quitting the app. Press Spacebar/enter to pause the timer"
 				return m, nil
-			} else {
+			}
+			// check for no tasks here, basically nothing can be done if zero tasks
+			if len(m.tasks) == 0 {
+				m = m.NoTaskView()
+				return m, nil
+			}
+		} else {
+			//TIMER STOPPED
+			if len(m.tasks) == 0 {
+				m = m.NoTaskView()
+			}
+			switch msg.String() {
+			case "ctrl+c", "q":
 				m.quitting = true
 				return m, tea.Quit
+			case " ", "enter":
+				// if program is here, there should not be zero tasks, so no checks required
+				_, ok := m.tasks[m.activeTaskId]
+				if !ok {
+					m.statusQuote = "No task selected, press 'n' to create a new task"
+					return m, nil
+				}
+
+				if m.timerRunning {
+					// stop session
+				} else {
+					m.StartSession()
+					m.timerRunning = !m.timerRunning
+				}
+
+				return m, nil
+			case "n":
+
 			}
-		case " ", "enter":
-			// if program is here, there should not be zero tasks, so no checks required
-
-			m.timerRunning = !m.timerRunning
-			return m, nil
 		}
-	}
 
-	if len(m.tasks) == 0 {
-		return m.NoTaskView(), nil
+		switch msg.String() {
+
+		}
+
 	}
 
 	return m, nil
@@ -122,16 +154,33 @@ func (m model) NoTaskView() model {
 	return m
 }
 
-func GetTaskMap(queries *db.Queries) (map[int]db.Task, error) {
+func GetTaskMap(queries *db.Queries) (map[int64]db.Task, error) {
 	tasks, err := queries.GetTasks(context.Background())
 	if err != nil {
 		return nil, err
 	}
-	taskMap := make(map[int]db.Task)
+	taskMap := make(map[int64]db.Task)
 	for _, v := range tasks {
-		taskMap[int(v.ID)] = v
+		taskMap[v.ID] = v
 	}
 	return taskMap, nil
+}
+
+func (m model) StartSession() model {
+	taskID := m.activeTaskId
+	sessionParams := db.StartSessionParams{
+		StartTime: time.Now().Format("2006-01-02 15:04:05"),
+		TaskID:    taskID,
+	}
+	session, err := m.db.StartSession(context.Background(), sessionParams)
+	if err != nil {
+		m.statusQuote = "Couldn't start session: " + err.Error()
+		return m
+	}
+	timer := stopwatch.NewTimer(m.tasks[taskID].Name)
+	m.timer = timer
+	m.currentSession = &session
+	return m
 }
 
 func main() {
