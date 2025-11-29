@@ -63,14 +63,17 @@ func (m Model) ID() int {
 	return m.id
 }
 
+// Starts the timer
 func (m Model) StartCmd() tea.Cmd {
 	return m.startStop(true)
 }
 
+// Stops the timer
 func (m Model) StopCmd() tea.Cmd {
 	return m.startStop(false)
 }
 
+// Sends a ResetMsg
 func (m Model) ResetCmd() tea.Cmd {
 	return func() tea.Msg {
 		return ResetMsg{Id: m.id}
@@ -120,7 +123,8 @@ func (m *Model) IsRunning() bool {
 // This will prevent the bug where the user maybe uses a macro to reset and start immediately.
 // just for that tho, there is no functionality to change tick interval duration for now(no reason to do that in a productivity timer)
 // So we'll just check the tag in tickmsg case
-func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
+// Note: this is a submodel, so it can return Model instead of tea.Model
+func (m Model) Update(msg tea.Msg) (Model, tea.Cmd) {
 	switch msg := msg.(type) {
 	case StartStopMsg:
 		log.Println("\n\n entered startstopmsg update")

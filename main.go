@@ -176,7 +176,7 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 					m.StatusQuote = "No task selected, press 'n' to create a new task"
 					return m, nil
 				}
-
+				m.StatusQuote = "Session Started!"
 				return m.StartSession(), m.Timer.StartCmd()
 			case "n":
 				cmd = m.textInput.Focus()
@@ -184,7 +184,10 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				return m, cmd
 			}
 		}
-
+	case stopwatch.ResetMsg, stopwatch.StartStopMsg, stopwatch.TickMsg:
+		var timerCmd tea.Cmd
+		m.Timer, timerCmd = m.Timer.Update(msg)
+		return m, timerCmd
 	}
 
 	return m, nil
@@ -194,10 +197,7 @@ func (m model) View() string {
 	if m.quitting {
 		return "quitting negetropy!"
 	}
-	s := fmt.Sprintf(
-		"\n\ntasks=%v, \nactiveTaskId=%d, \nstatusQuote=%q, \nhelp=%q, \ntimer=%+v, \nquitting=%v, \ncurrentSession=%v, \ntextInput=%+v, \ntyping=%v",
-		m.tasks, m.ActiveTaskId, m.StatusQuote, m.help, m.Timer, m.quitting, m.CurrentSession, m.textInput, m.Typing,
-	) + fmt.Sprintf("\n\n\n\nActive Task ID: %d\n  %s\n\n  %s\n %s\n", m.ActiveTaskId, m.StatusQuote, m.help, m.textInput.View())
+	s := fmt.Sprintf("\n\n\n\nActive Task ID: %d\n  %s\n\n  %s\n %s\n", m.ActiveTaskId, m.StatusQuote, m.help, m.textInput.View())
 	return s
 }
 
@@ -242,7 +242,6 @@ func (m model) StopSession() model {
 		EndTime: sql.NullString{String: endTime, Valid: true},
 		TaskID:  taskID,
 	}
-	m.Timer.Running = false
 	m.db.EndSession(context.Background(), endSessionParams)
 
 	return m
