@@ -1,6 +1,7 @@
 package stopwatch
 
 import (
+	"log"
 	"sync/atomic"
 	"time"
 
@@ -11,7 +12,7 @@ var lastID int64
 
 type Model struct {
 	Label       string
-	running     bool
+	Running     bool
 	id          int
 	tag         int
 	Interval    time.Duration
@@ -78,6 +79,8 @@ func (m Model) ResetCmd() tea.Cmd {
 
 func (m Model) startStop(v bool) tea.Cmd {
 	return func() tea.Msg {
+		log.Println("value passed: ", v)
+		log.Println("current value m.Running: ", m.Running)
 		return StartStopMsg{Id: m.id, Running: v}
 	}
 }
@@ -86,14 +89,14 @@ func NewTimer(label string) Model {
 	return Model{
 		id:       nextID(),
 		Label:    label,
-		running:  false,
+		Running:  false,
 		Interval: time.Second,
 	}
 }
 
 func NewTimerRunning(label string) Model {
 	m := NewTimer(label)
-	m.running = true
+	m.Running = true
 	return m
 }
 
@@ -104,13 +107,13 @@ func nextID() int {
 }
 
 func (m *Model) reset() {
-	m.running = false
+	m.Running = false
 	m.SessionTime = 0
 	m.tag++
 }
 
 func (m *Model) IsRunning() bool {
-	return m.running
+	return m.Running
 }
 
 // tag's purpose is to prevent race conditions. Here it'll be incremented everytime user resets.
@@ -120,12 +123,15 @@ func (m *Model) IsRunning() bool {
 func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch msg := msg.(type) {
 	case StartStopMsg:
+		log.Println("\n\n entered startstopmsg update")
 		// id 0 is master control (no use for now)
 		if msg.Id != 0 && msg.Id != m.id {
+			log.Println("this shouldnt be printed")
 			return m, nil
 		}
-		m.running = msg.Running
-		if m.running {
+		m.Running = msg.Running
+		log.Printf("\nmrunning: %v\tmsgrunning: %v\n", m.Running, msg.Running)
+		if m.Running {
 			return m, m.tick()
 		}
 		return m, nil
@@ -138,7 +144,7 @@ func (m Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		return m, nil
 
 	case TickMsg:
-		if !m.running || m.tag != msg.Tag || m.id != msg.Id {
+		if !m.Running || m.tag != msg.Tag || m.id != msg.Id {
 			return m, nil
 		}
 		m.SessionTime += m.Interval

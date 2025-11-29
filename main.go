@@ -3,28 +3,33 @@ package main
 import (
 	"context"
 	"database/sql"
+	"encoding/json"
 	"fmt"
 	"log"
 	"os"
 	"time"
 
 	"github.com/charmbracelet/bubbles/key"
+	"github.com/charmbracelet/bubbles/textinput"
 	tea "github.com/charmbracelet/bubbletea"
 	db "github.com/chee-zer/negentropy/database/sqlc"
 	"github.com/chee-zer/negentropy/stopwatch"
 	_ "github.com/mattn/go-sqlite3"
 )
 
+// capitalized fields for json.Marshal, only for debugging purposes, remove laater
 type model struct {
 	db           *db.Queries
 	tasks        map[int64]db.Task
-	activeTaskId int64
-	statusQuote  string
+	ActiveTaskId int64
+	StatusQuote  string
 	help         string
 	//tabs         TabModel
-	timer          stopwatch.Model
+	Timer          stopwatch.Model
 	quitting       bool
-	currentSession *db.Session
+	CurrentSession *db.Session
+	textInput      textinput.Model
+	Typing         bool
 }
 
 // global keymap
@@ -32,6 +37,8 @@ type model struct {
 // switch timer while timer not running(tab, l)
 //
 // exit (q)
+
+// TODO: forgot i had these, assign these AFTER the update loop is done
 type keymap struct {
 	startStopTimer key.Binding
 	switchTimer    key.Binding
@@ -50,16 +57,22 @@ func NewModel(queries *db.Queries) model {
 	}
 
 	dummyTimer := stopwatch.NewTimer("dummy")
+	ti := textinput.New()
+	ti.Placeholder = "Enter task name"
+	ti.CharLimit = 20
+	ti.Width = 20
 
 	return model{
 		db:             queries,
 		tasks:          taskMap,
-		activeTaskId:   0,
-		statusQuote:    "this is status quote",
+		ActiveTaskId:   0,
+		StatusQuote:    "this is status quote",
 		help:           "this is help string",
 		quitting:       false,
-		timer:          dummyTimer,
-		currentSession: nil,
+		Timer:          dummyTimer,
+		CurrentSession: nil,
+		textInput:      ti,
+		Typing:         false,
 	}
 }
 
@@ -68,6 +81,52 @@ func (m model) Init() tea.Cmd {
 }
 
 func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
+	var cmd tea.Cmd
+
+	if m.Typing {
+		switch msg := msg.(type) {
+		case tea.KeyMsg:
+			switch msg.Type {
+			case tea.KeyEnter:
+				newTaskName := m.textInput.Value()
+				taskCreatingParams := db.CreateTaskParams{
+					Name: newTaskName,
+					ColorHex: sql.NullString{String: "what",
+						Valid: true},
+					DailyTarget: sql.NullInt64{
+						Int64: 3600,
+						Valid: true,
+					},
+				}
+
+				task, err := m.db.CreateTask(context.Background(), taskCreatingParams)
+				if err != nil {
+					m.StatusQuote = "Couldn't create task: " + err.Error()
+					m.textInput.Reset()
+
+					return m, m.textInput.Focus()
+				}
+				m.Typing = false
+
+				// adding the task in main model and switching to it
+				m.tasks[task.ID] = task
+				m.ActiveTaskId = task.ID
+				m.textInput.Reset()
+				m.textInput.Blur()
+				m.StatusQuote = "Task created"
+				return m, nil
+
+			case tea.KeyEsc:
+				m.textInput.Reset()
+				m.Typing = false
+				m.StatusQuote = "Task not created -_-"
+				m.textInput.Blur()
+			}
+
+			m.textInput, cmd = m.textInput.Update(msg)
+			return m, cmd
+		}
+	}
 
 	switch msg := msg.(type) {
 	case tea.KeyMsg:
@@ -86,18 +145,22 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			[] - start stop also allowed
 			[] - quit (q)
 		*/
-		if m.timer.IsRunning() {
+		if m.Timer.IsRunning() {
 			//TIMER RUNNING
 			switch msg.String() {
 			case "ctrl+c", "q":
 				m.help = "Please end your session before quitting the app. Press Spacebar/enter to pause the timer"
 				return m, nil
+			case " ", "enter":
+				m.StatusQuote = "Session ended!!"
+				log.Printf("\n%+v\n", m)
+				return m.StopSession(), m.Timer.StopCmd()
 			}
-			// check for no tasks here, basically nothing can be done if zero tasks
 			if len(m.tasks) == 0 {
 				m = m.NoTaskView()
 				return m, nil
 			}
+
 		} else {
 			//TIMER STOPPED
 			if len(m.tasks) == 0 {
@@ -108,27 +171,18 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				m.quitting = true
 				return m, tea.Quit
 			case " ", "enter":
-				// if program is here, there should not be zero tasks, so no checks required
-				_, ok := m.tasks[m.activeTaskId]
+				_, ok := m.tasks[m.ActiveTaskId]
 				if !ok {
-					m.statusQuote = "No task selected, press 'n' to create a new task"
+					m.StatusQuote = "No task selected, press 'n' to create a new task"
 					return m, nil
 				}
 
-				if m.timer.IsRunning() {
-					return m.StopSession(), m.timer.StopCmd()
-				} else {
-					return m.StartSession(), m.timer.StartCmd()
-				}
-
-				return m, nil
+				return m.StartSession(), m.Timer.StartCmd()
 			case "n":
-
+				cmd = m.textInput.Focus()
+				m.Typing = true
+				return m, cmd
 			}
-		}
-
-		switch msg.String() {
-
 		}
 
 	}
@@ -137,17 +191,18 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 }
 
 func (m model) View() string {
-	if len(m.tasks) == 0 {
-		return fmt.Sprintf("\n  %s\n\n  %s\n", m.statusQuote, m.help)
-	}
 	if m.quitting {
 		return "quitting negetropy!"
 	}
-	return fmt.Sprintf("Active Task ID: %d\n  %s\n\n  %s\n", m.activeTaskId, m.statusQuote, m.help)
+	s := fmt.Sprintf(
+		"\n\ntasks=%v, \nactiveTaskId=%d, \nstatusQuote=%q, \nhelp=%q, \ntimer=%+v, \nquitting=%v, \ncurrentSession=%v, \ntextInput=%+v, \ntyping=%v",
+		m.tasks, m.ActiveTaskId, m.StatusQuote, m.help, m.Timer, m.quitting, m.CurrentSession, m.textInput, m.Typing,
+	) + fmt.Sprintf("\n\n\n\nActive Task ID: %d\n  %s\n\n  %s\n %s\n", m.ActiveTaskId, m.StatusQuote, m.help, m.textInput.View())
+	return s
 }
 
 func (m model) NoTaskView() model {
-	m.statusQuote = "No tasks found :( Press 'n' to create a new task!"
+	m.StatusQuote = "No tasks found :( Press 'n' to create a new task!"
 	return m
 }
 
@@ -164,36 +219,50 @@ func GetTaskMap(queries *db.Queries) (map[int64]db.Task, error) {
 }
 
 func (m model) StartSession() model {
-	taskID := m.activeTaskId
+	taskID := m.ActiveTaskId
 	sessionParams := db.StartSessionParams{
 		StartTime: time.Now().Format("2006-01-02 15:04:05"),
 		TaskID:    taskID,
 	}
 	session, err := m.db.StartSession(context.Background(), sessionParams)
 	if err != nil {
-		m.statusQuote = "Couldn't start session: " + err.Error()
+		m.StatusQuote = "Couldn't start session: " + err.Error()
 		return m
 	}
 	timer := stopwatch.NewTimerRunning(m.tasks[taskID].Name)
-	m.timer = timer
-	m.currentSession = &session
+	m.Timer = timer
+	m.CurrentSession = &session
 	return m
 }
 
 func (m model) StopSession() model {
-	taskID := m.activeTaskId
-	m.timer.StopCmd()
+	taskID := m.ActiveTaskId
 	endTime := time.Now().Format("2006-01-02 15:04:05")
 	endSessionParams := db.EndSessionParams{
 		EndTime: sql.NullString{String: endTime, Valid: true},
 		TaskID:  taskID,
 	}
+	m.Timer.Running = false
 	m.db.EndSession(context.Background(), endSessionParams)
 
 	return m
 }
 
+func (m model) String() string {
+	b, err := json.MarshalIndent(m, "", "  ")
+	if err != nil {
+		return fmt.Sprintf("error: %v", err)
+	}
+	return string(b)
+}
+
 func main() {
+	f, err := tea.LogToFile("debug.log", "debug")
+	if err != nil {
+		fmt.Println("fatal:", err)
+		os.Exit(1)
+	}
+	defer f.Close()
 	sqlitedb, err := sql.Open("sqlite3", "./database/appdb.sqlite")
 	if err != nil {
 		log.Fatalf("Couldn't connect to db: %v", err.Error())

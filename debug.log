@@ -1,0 +1,151 @@
+debug 2025/11/29 09:01:58 value passed:  true
+debug 2025/11/29 09:01:58 current value m.Running:  false
+debug 2025/11/29 09:02:07 
+{
+  "ActiveTaskId": 22,
+  "StatusQuote": "Session ended!!",
+  "Timer": {
+    "Label": "JL",
+    "Running": true,
+    "Interval": 1000000000,
+    "SessionTime": 0
+  },
+  "CurrentSession": {
+    "id": 20,
+    "start_time": "2025-11-29 09:01:58",
+    "end_time": {
+      "String": "",
+      "Valid": false
+    },
+    "task_id": 22
+  },
+  "Typing": false
+}
+debug 2025/11/29 09:02:07 value passed:  false
+debug 2025/11/29 09:02:07 current value m.Running:  true
+debug 2025/11/29 09:04:04 value passed:  true
+debug 2025/11/29 09:04:04 current value m.Running:  false
+debug 2025/11/29 09:04:06 
+{
+  "ActiveTaskId": 23,
+  "StatusQuote": "Session ended!!",
+  "Timer": {
+    "Label": "PPPPPP",
+    "Running": true,
+    "Interval": 1000000000,
+    "SessionTime": 0
+  },
+  "CurrentSession": {
+    "id": 21,
+    "start_time": "2025-11-29 09:04:04",
+    "end_time": {
+      "String": "",
+      "Valid": false
+    },
+    "task_id": 23
+  },
+  "Typing": false
+}
+debug 2025/11/29 09:04:06 value passed:  false
+debug 2025/11/29 09:04:06 current value m.Running:  true
+
+next test: 
+
+debug 2025/11/29 09:05:26 value passed:  true
+debug 2025/11/29 09:05:26 current value m.Running:  false
+debug 2025/11/29 09:05:30 
+{
+  "ActiveTaskId": 24,
+  "StatusQuote": "Session ended!!",
+  "Timer": {
+    "Label": "FSJK",
+    "Running": true,
+    "Interval": 1000000000,
+    "SessionTime": 0
+  },
+  "CurrentSession": {
+    "id": 22,
+    "start_time": "2025-11-29 09:05:26",
+    "end_time": {
+      "String": "",
+      "Valid": false
+    },
+    "task_id": 24
+  },
+  "Typing": false
+}
+debug 2025/11/29 09:05:30 value passed:  false
+debug 2025/11/29 09:05:30 current value m.Running:  true
+debug 2025/11/29 09:05:39 
+{
+  "ActiveTaskId": 24,
+  "StatusQuote": "Session ended!!",
+  "Timer": {
+    "Label": "FSJK",
+    "Running": true,
+    "Interval": 1000000000,
+    "SessionTime": 0
+  },
+  "CurrentSession": {
+    "id": 22,
+    "start_time": "2025-11-29 09:05:26",
+    "end_time": {
+      "String": "",
+      "Valid": false
+    },
+    "task_id": 24
+  },
+  "Typing": false
+}
+debug 2025/11/29 09:05:39 value passed:  false
+debug 2025/11/29 09:05:39 current value m.Running:  true
+debug 2025/11/29 09:08:08 value passed:  true
+debug 2025/11/29 09:08:08 current value m.Running:  false
+debug 2025/11/29 09:08:14 
+{
+  "ActiveTaskId": 25,
+  "StatusQuote": "Session ended!!",
+  "Timer": {
+    "Label": "PPPPPPPPP",
+    "Running": true,
+    "Interval": 1000000000,
+    "SessionTime": 0
+  },
+  "CurrentSession": {
+    "id": 23,
+    "start_time": "2025-11-29 09:08:08",
+    "end_time": {
+      "String": "",
+      "Valid": false
+    },
+    "task_id": 25
+  },
+  "Typing": false
+}
+debug 2025/11/29 09:08:14 value passed:  false
+debug 2025/11/29 09:08:14 current value m.Running:  true
+debug 2025/11/29 09:08:19 value passed:  true
+debug 2025/11/29 09:08:19 current value m.Running:  false
+debug 2025/11/29 09:08:23 
+{
+  "ActiveTaskId": 25,
+  "StatusQuote": "Session ended!!",
+  "Timer": {
+    "Label": "PPPPPPPPP",
+    "Running": true,
+    "Interval": 1000000000,
+    "SessionTime": 0
+  },
+  "CurrentSession": {
+    "id": 24,
+    "start_time": "2025-11-29 09:08:19",
+    "end_time": {
+      "String": "",
+      "Valid": false
+    },
+    "task_id": 25
+  },
+  "Typing": false
+}
+debug 2025/11/29 09:08:23 value passed:  false
+debug 2025/11/29 09:08:23 current value m.Running:  true
