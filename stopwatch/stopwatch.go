@@ -10,7 +10,7 @@ import (
 
 var lastID int64
 
-type Model struct {
+type StopwatchModel struct {
 	Label       string
 	Running     bool
 	id          int
@@ -19,11 +19,11 @@ type Model struct {
 	SessionTime time.Duration
 }
 
-func (m Model) Init() tea.Cmd {
+func (m StopwatchModel) Init() tea.Cmd {
 	return m.tick()
 }
 
-func (m Model) tick() tea.Cmd {
+func (m StopwatchModel) tick() tea.Cmd {
 	return tea.Tick(m.Interval, func(_ time.Time) tea.Msg {
 		return TickMsg{Id: m.id, Tag: m.tag}
 	})
@@ -59,28 +59,28 @@ type ResetMsg struct {
 // [x] stop
 // [x] reset
 
-func (m Model) ID() int {
+func (m StopwatchModel) ID() int {
 	return m.id
 }
 
 // Starts the timer
-func (m Model) StartCmd() tea.Cmd {
+func (m StopwatchModel) StartCmd() tea.Cmd {
 	return m.startStop(true)
 }
 
 // Stops the timer
-func (m Model) StopCmd() tea.Cmd {
+func (m StopwatchModel) StopCmd() tea.Cmd {
 	return m.startStop(false)
 }
 
 // Sends a ResetMsg
-func (m Model) ResetCmd() tea.Cmd {
+func (m StopwatchModel) ResetCmd() tea.Cmd {
 	return func() tea.Msg {
 		return ResetMsg{Id: m.id}
 	}
 }
 
-func (m Model) startStop(v bool) tea.Cmd {
+func (m StopwatchModel) startStop(v bool) tea.Cmd {
 	return func() tea.Msg {
 		log.Println("value passed: ", v)
 		log.Println("current value m.Running: ", m.Running)
@@ -88,8 +88,8 @@ func (m Model) startStop(v bool) tea.Cmd {
 	}
 }
 
-func NewTimer(label string) Model {
-	return Model{
+func NewTimer(label string) StopwatchModel {
+	return StopwatchModel{
 		id:       nextID(),
 		Label:    label,
 		Running:  false,
@@ -97,7 +97,7 @@ func NewTimer(label string) Model {
 	}
 }
 
-func NewTimerRunning(label string) Model {
+func NewTimerRunning(label string) StopwatchModel {
 	m := NewTimer(label)
 	m.Running = true
 	return m
@@ -109,13 +109,13 @@ func nextID() int {
 	return int(atomic.AddInt64(&lastID, 1))
 }
 
-func (m *Model) reset() {
+func (m *StopwatchModel) reset() {
 	m.Running = false
 	m.SessionTime = 0
 	m.tag++
 }
 
-func (m *Model) IsRunning() bool {
+func (m *StopwatchModel) IsRunning() bool {
 	return m.Running
 }
 
@@ -124,7 +124,7 @@ func (m *Model) IsRunning() bool {
 // just for that tho, there is no functionality to change tick interval duration for now(no reason to do that in a productivity timer)
 // So we'll just check the tag in tickmsg case
 // Note: this is a submodel, so it can return Model instead of tea.Model
-func (m Model) Update(msg tea.Msg) (Model, tea.Cmd) {
+func (m StopwatchModel) Update(msg tea.Msg) (StopwatchModel, tea.Cmd) {
 	switch msg := msg.(type) {
 	case StartStopMsg:
 		log.Println("\n\n entered startstopmsg update")
@@ -157,7 +157,7 @@ func (m Model) Update(msg tea.Msg) (Model, tea.Cmd) {
 	return m, nil
 }
 
-func (m Model) View() string {
+func (m StopwatchModel) View() string {
 
 	return m.SessionTime.String()
 }
