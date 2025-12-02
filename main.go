@@ -19,17 +19,18 @@ import (
 
 // capitalized fields for json.Marshal, only for debugging purposes, remove laater
 type model struct {
-	db           *db.Queries
-	tasks        map[int64]db.Task
-	ActiveTaskId int64
-	StatusQuote  string
-	help         string
-	//tabs         TabModel
-	Timer          stopwatch.Model
+	db             *db.Queries
+	tasks          map[int64]db.Task
+	ActiveTaskId   int64
+	StatusQuote    string
+	help           string
+	tabs           TabModel
+	Timer          stopwatch.StopwatchModel
 	quitting       bool
 	CurrentSession *db.Session
 	textInput      textinput.Model
 	Typing         bool
+	keymap         keymap
 }
 
 // global keymap
@@ -40,20 +41,29 @@ type model struct {
 
 // TODO: forgot i had these, assign these AFTER the update loop is done
 type keymap struct {
-	startStopTimer key.Binding
-	switchTimer    key.Binding
-	exit           key.Binding
-	goRight        key.Binding
-	goLeft         key.Binding
-	deleteTask     key.Binding
-	createTask     key.Binding
-	resetTimer     key.Binding
+	//startStopTimer key.Binding
+	//switchTimer    key.Binding
+	//exit           key.Binding
+	goRight key.Binding
+	goLeft  key.Binding
+	//deleteTask     key.Binding
+	//createTask     key.Binding
+	//resetTimer     key.Binding
 }
 
 func NewModel(queries *db.Queries) model {
-	taskMap, err := GetTaskMap(queries)
+	taskMap, tasks, err := GetTaskMap(queries)
 	if err != nil {
 		log.Fatalf("couldn't not load tasks: %v", err)
+	}
+
+	keymapvalues := keymap{
+		goRight: key.NewBinding(
+			key.WithKeys("right"),
+		),
+		goLeft: key.NewBinding(
+			key.WithKeys("left"),
+		),
 	}
 
 	dummyTimer := stopwatch.NewTimer("dummy")
@@ -62,6 +72,7 @@ func NewModel(queries *db.Queries) model {
 	ti.CharLimit = 20
 	ti.Width = 20
 
+	tabs := NewTabModel(tasks)
 	return model{
 		db:             queries,
 		tasks:          taskMap,
@@ -73,6 +84,8 @@ func NewModel(queries *db.Queries) model {
 		CurrentSession: nil,
 		textInput:      ti,
 		Typing:         false,
+		keymap:         keymapvalues,
+		tabs:           tabs,
 	}
 }
 
@@ -111,6 +124,8 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				// adding the task in main model and switching to it
 				m.tasks[task.ID] = task
 				m.ActiveTaskId = task.ID
+				m.tabs.Tasks = append(m.tabs.Tasks, task)
+				m.tabs.ActiveTabIndex = len(m.tabs.Tasks) - 1
 				m.textInput.Reset()
 				m.textInput.Blur()
 				m.StatusQuote = "Task created"
@@ -129,22 +144,20 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	}
 
 	switch msg := msg.(type) {
+	case stopwatch.ResetMsg, stopwatch.StartStopMsg, stopwatch.TickMsg:
+		var timerCmd tea.Cmd
+		m.Timer, timerCmd = m.Timer.Update(msg)
+		return m, timerCmd
+
+	case SwitchSelectedTaskMsg:
+		m.ActiveTaskId = msg.taskID
+	case SwitchMsg:
+		var tabCmd tea.Cmd
+
+		m.tabs, tabCmd = m.tabs.Update(msg)
+		return m, tabCmd
+
 	case tea.KeyMsg:
-		/*
-			keyMsg handling
-			if no task is created, prompt user to create new task, only 'n' is allowed
-			check if timer running, then split the keyMsgs
-			if timer running:
-			[] - only start stop allowed
-			[] - reset only when timer stopped, so display a message showing so
-			[] - same with navigation tasks(a, d, h, l, left, right), show message
-			if timer not running:
-			[] - navigation (a, d, h, l, left, right) for navigating tabs
-			[] - n - opens a text prompt and creates new task
-			[] - x - open a prompt to confirm deletion of task. the records wont be deleted, and the if the task with same name is created, it gets restored
-			[] - start stop also allowed
-			[] - quit (q)
-		*/
 		if m.Timer.IsRunning() {
 			//TIMER RUNNING
 			switch msg.String() {
@@ -166,38 +179,41 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			if len(m.tasks) == 0 {
 				m = m.NoTaskView()
 			}
-			switch msg.String() {
-			case "ctrl+c", "q":
-				m.quitting = true
-				return m, tea.Quit
-			case " ", "enter":
-				_, ok := m.tasks[m.ActiveTaskId]
-				if !ok {
-					m.StatusQuote = "No task selected, press 'n' to create a new task"
-					return m, nil
-				}
-				m.StatusQuote = "Session Started!"
-				return m.StartSession(), m.Timer.StartCmd()
-			case "n":
-				cmd = m.textInput.Focus()
-				m.Typing = true
-				return m, cmd
+			switch {
+			case key.Matches(msg, m.keymap.goLeft):
+				return m, m.tabs.SwitchLeftCmd()
+			case key.Matches(msg, m.keymap.goRight):
+				return m, m.tabs.SwitchRightCmd()
 			}
-		}
-	case stopwatch.ResetMsg, stopwatch.StartStopMsg, stopwatch.TickMsg:
-		var timerCmd tea.Cmd
-		m.Timer, timerCmd = m.Timer.Update(msg)
-		return m, timerCmd
-	}
 
+		}
+		switch msg.String() {
+		case "ctrl+c", "q":
+			m.quitting = true
+			return m, tea.Quit
+		case " ", "enter":
+			_, ok := m.tasks[m.ActiveTaskId]
+			if !ok {
+				m.StatusQuote = "No task selected, press 'n' to create a new task"
+				return m, nil
+			}
+			m.StatusQuote = "Session Started!"
+			return m.StartSession(), m.Timer.StartCmd()
+		case "n":
+			cmd = m.textInput.Focus()
+			m.Typing = true
+			return m, cmd
+		}
+	}
 	return m, nil
+
 }
 
 func (m model) View() string {
 	if m.quitting {
 		return "quitting negetropy!"
 	}
-	s := fmt.Sprintf("\n\n\n\nActive Task ID: %d\n  %s\n\n  %s\n %s\n", m.ActiveTaskId, m.StatusQuote, m.help, m.textInput.View())
+	s := fmt.Sprintf("\n\n\n\ntasks: %s\n\nActive Task ID: %d\n  %s\n\n  %s\n %s\n", m.tabs.View(), m.ActiveTaskId, m.StatusQuote, m.help, m.textInput.View())
 	return s
 }
 
@@ -206,16 +222,16 @@ func (m model) NoTaskView() model {
 	return m
 }
 
-func GetTaskMap(queries *db.Queries) (map[int64]db.Task, error) {
+func GetTaskMap(queries *db.Queries) (map[int64]db.Task, []db.Task, error) {
 	tasks, err := queries.GetTasks(context.Background())
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 	taskMap := make(map[int64]db.Task)
 	for _, v := range tasks {
 		taskMap[v.ID] = v
 	}
-	return taskMap, nil
+	return taskMap, tasks, nil
 }
 
 func (m model) StartSession() model {
