@@ -1,550 +1,70 @@
-debug 2025/11/29 09:01:58 value passed:  true
-debug 2025/11/29 09:01:58 current value m.Running:  false
-debug 2025/11/29 09:02:07 
-{
-  "ActiveTaskId": 22,
-  "StatusQuote": "Session ended!!",
-  "Timer": {
-    "Label": "JL",
-    "Running": true,
-    "Interval": 1000000000,
-    "SessionTime": 0
-  },
-  "CurrentSession": {
-    "id": 20,
-    "start_time": "2025-11-29 09:01:58",
-    "end_time": {
-      "String": "",
-      "Valid": false
-    },
-    "task_id": 22
-  },
-  "Typing": false
-}
-debug 2025/11/29 09:02:07 value passed:  false
-debug 2025/11/29 09:02:07 current value m.Running:  true
-debug 2025/11/29 09:04:04 value passed:  true
-debug 2025/11/29 09:04:04 current value m.Running:  false
-debug 2025/11/29 09:04:06 
-{
-  "ActiveTaskId": 23,
-  "StatusQuote": "Session ended!!",
-  "Timer": {
-    "Label": "PPPPPP",
-    "Running": true,
-    "Interval": 1000000000,
-    "SessionTime": 0
-  },
-  "CurrentSession": {
-    "id": 21,
-    "start_time": "2025-11-29 09:04:04",
-    "end_time": {
-      "String": "",
-      "Valid": false
-    },
-    "task_id": 23
-  },
-  "Typing": false
-}
-debug 2025/11/29 09:04:06 value passed:  false
-debug 2025/11/29 09:04:06 current value m.Running:  true
-
-next test: 
-
-debug 2025/11/29 09:05:26 value passed:  true
-debug 2025/11/29 09:05:26 current value m.Running:  false
-debug 2025/11/29 09:05:30 
-{
-  "ActiveTaskId": 24,
-  "StatusQuote": "Session ended!!",
-  "Timer": {
-    "Label": "FSJK",
-    "Running": true,
-    "Interval": 1000000000,
-    "SessionTime": 0
-  },
-  "CurrentSession": {
-    "id": 22,
-    "start_time": "2025-11-29 09:05:26",
-    "end_time": {
-      "String": "",
-      "Valid": false
-    },
-    "task_id": 24
-  },
-  "Typing": false
-}
-debug 2025/11/29 09:05:30 value passed:  false
-debug 2025/11/29 09:05:30 current value m.Running:  true
-debug 2025/11/29 09:05:39 
-{
-  "ActiveTaskId": 24,
-  "StatusQuote": "Session ended!!",
-  "Timer": {
-    "Label": "FSJK",
-    "Running": true,
-    "Interval": 1000000000,
-    "SessionTime": 0
-  },
-  "CurrentSession": {
-    "id": 22,
-    "start_time": "2025-11-29 09:05:26",
-    "end_time": {
-      "String": "",
-      "Valid": false
-    },
-    "task_id": 24
-  },
-  "Typing": false
-}
-debug 2025/11/29 09:05:39 value passed:  false
-debug 2025/11/29 09:05:39 current value m.Running:  true
-debug 2025/11/29 09:08:08 value passed:  true
-debug 2025/11/29 09:08:08 current value m.Running:  false
-debug 2025/11/29 09:08:14 
-{
-  "ActiveTaskId": 25,
-  "StatusQuote": "Session ended!!",
-  "Timer": {
-    "Label": "PPPPPPPPP",
-    "Running": true,
-    "Interval": 1000000000,
-    "SessionTime": 0
-  },
-  "CurrentSession": {
-    "id": 23,
-    "start_time": "2025-11-29 09:08:08",
-    "end_time": {
-      "String": "",
-      "Valid": false
-    },
-    "task_id": 25
-  },
-  "Typing": false
-}
-debug 2025/11/29 09:08:14 value passed:  false
-debug 2025/11/29 09:08:14 current value m.Running:  true
-debug 2025/11/29 09:08:19 value passed:  true
-debug 2025/11/29 09:08:19 current value m.Running:  false
-debug 2025/11/29 09:08:23 
-{
-  "ActiveTaskId": 25,
-  "StatusQuote": "Session ended!!",
-  "Timer": {
-    "Label": "PPPPPPPPP",
-    "Running": true,
-    "Interval": 1000000000,
-    "SessionTime": 0
-  },
-  "CurrentSession": {
-    "id": 24,
-    "start_time": "2025-11-29 09:08:19",
-    "end_time": {
-      "String": "",
-      "Valid": false
-    },
-    "task_id": 25
-  },
-  "Typing": false
-}
-debug 2025/11/29 09:08:23 value passed:  false
-debug 2025/11/29 09:08:23 current value m.Running:  true
-debug 2025/11/29 17:50:08 value passed:  true
-debug 2025/11/29 17:50:08 current value m.Running:  false
-debug 2025/11/29 17:50:13 
-{
-  "ActiveTaskId": 26,
-  "StatusQuote": "Session ended!!",
-  "Timer": {
-    "Label": "WHATTTTTT",
-    "Running": true,
-    "Interval": 1000000000,
-    "SessionTime": 0
-  },
-  "CurrentSession": {
-    "id": 25,
-    "start_time": "2025-11-29 17:50:08",
-    "end_time": {
-      "String": "",
-      "Valid": false
-    },
-    "task_id": 26
-  },
-  "Typing": false
-}
-debug 2025/11/29 17:50:13 value passed:  false
-debug 2025/11/29 17:50:13 current value m.Running:  true
-debug 2025/11/29 18:26:39 value passed:  true
-debug 2025/11/29 18:26:39 current value m.Running:  false
-debug 2025/11/29 18:26:39 
+debug 2025/12/17 21:43:41 what
+debug 2025/12/17 21:44:05 what
+debug 2025/12/17 21:44:06 value passed:  true
+debug 2025/12/17 21:44:06 current value m.Running:  false
+debug 2025/12/17 21:44:06 
 
  entered startstopmsg update
-debug 2025/11/29 18:26:39 this shouldnt be printed
-debug 2025/11/29 18:26:40 
+debug 2025/12/17 21:44:06 this shouldnt be printed
+debug 2025/12/17 21:44:07 
 {
-  "ActiveTaskId": 27,
+  "ActiveTaskId": 3,
   "StatusQuote": "Session ended!!",
   "Timer": {
-    "Label": "SJDKL",
+    "Label": "yo",
     "Running": true,
     "Interval": 1000000000,
     "SessionTime": 0
   },
   "CurrentSession": {
-    "id": 26,
-    "start_time": "2025-11-29 18:26:39",
+    "id": 37,
+    "start_time": "2025-12-17 21:44:06",
     "end_time": {
       "String": "",
       "Valid": false
     },
-    "task_id": 27
+    "task_id": 3
   },
   "Typing": false
 }
-debug 2025/11/29 18:26:40 value passed:  false
-debug 2025/11/29 18:26:40 current value m.Running:  true
-debug 2025/11/29 18:26:40 
+debug 2025/12/17 21:44:07 value passed:  false
+debug 2025/12/17 21:44:07 current value m.Running:  true
+debug 2025/12/17 21:44:07 
 
  entered startstopmsg update
-debug 2025/11/29 18:26:40 
+debug 2025/12/17 21:44:07 
 mrunning: false	msgrunning: false
-debug 2025/11/29 18:26:41 value passed:  true
-debug 2025/11/29 18:26:41 current value m.Running:  false
-debug 2025/11/29 18:26:41 
+debug 2025/12/17 21:44:09 value passed:  true
+debug 2025/12/17 21:44:09 current value m.Running:  false
+debug 2025/12/17 21:44:09 
 
  entered startstopmsg update
-debug 2025/11/29 18:26:41 this shouldnt be printed
-debug 2025/11/29 18:26:43 
+debug 2025/12/17 21:44:09 this shouldnt be printed
+debug 2025/12/17 21:44:10 
 {
-  "ActiveTaskId": 27,
+  "ActiveTaskId": 6,
   "StatusQuote": "Session ended!!",
   "Timer": {
-    "Label": "SJDKL",
+    "Label": "XXY",
     "Running": true,
     "Interval": 1000000000,
     "SessionTime": 0
   },
   "CurrentSession": {
-    "id": 27,
-    "start_time": "2025-11-29 18:26:41",
+    "id": 38,
+    "start_time": "2025-12-17 21:44:09",
     "end_time": {
       "String": "",
       "Valid": false
     },
-    "task_id": 27
+    "task_id": 6
   },
   "Typing": false
 }
-debug 2025/11/29 18:26:43 value passed:  false
-debug 2025/11/29 18:26:43 current value m.Running:  true
-debug 2025/11/29 18:26:43 
+debug 2025/12/17 21:44:10 value passed:  false
+debug 2025/12/17 21:44:10 current value m.Running:  true
+debug 2025/12/17 21:44:10 
 
  entered startstopmsg update
-debug 2025/11/29 18:26:43 
-mrunning: false	msgrunning: false
-debug 2025/11/29 18:27:31 value passed:  true
-debug 2025/11/29 18:27:31 current value m.Running:  false
-debug 2025/11/29 18:27:31 
-
- entered startstopmsg update
-debug 2025/11/29 18:27:31 this shouldnt be printed
-debug 2025/11/29 18:27:32 
-{
-  "ActiveTaskId": 28,
-  "StatusQuote": "Session ended!!",
-  "Timer": {
-    "Label": "JSJDS",
-    "Running": true,
-    "Interval": 1000000000,
-    "SessionTime": 0
-  },
-  "CurrentSession": {
-    "id": 28,
-    "start_time": "2025-11-29 18:27:31",
-    "end_time": {
-      "String": "",
-      "Valid": false
-    },
-    "task_id": 28
-  },
-  "Typing": false
-}
-debug 2025/11/29 18:27:32 value passed:  false
-debug 2025/11/29 18:27:32 current value m.Running:  true
-debug 2025/11/29 18:27:32 
-
- entered startstopmsg update
-debug 2025/11/29 18:27:32 
-mrunning: false	msgrunning: false
-debug 2025/11/29 18:27:33 value passed:  true
-debug 2025/11/29 18:27:33 current value m.Running:  false
-debug 2025/11/29 18:27:33 
-
- entered startstopmsg update
-debug 2025/11/29 18:27:33 this shouldnt be printed
-debug 2025/11/29 18:27:33 
-{
-  "ActiveTaskId": 28,
-  "StatusQuote": "Session ended!!",
-  "Timer": {
-    "Label": "JSJDS",
-    "Running": true,
-    "Interval": 1000000000,
-    "SessionTime": 0
-  },
-  "CurrentSession": {
-    "id": 29,
-    "start_time": "2025-11-29 18:27:33",
-    "end_time": {
-      "String": "",
-      "Valid": false
-    },
-    "task_id": 28
-  },
-  "Typing": false
-}
-debug 2025/11/29 18:27:33 value passed:  false
-debug 2025/11/29 18:27:33 current value m.Running:  true
-debug 2025/11/29 18:27:33 
-
- entered startstopmsg update
-debug 2025/11/29 18:27:33 
-mrunning: false	msgrunning: false
-debug 2025/11/29 18:27:34 value passed:  true
-debug 2025/11/29 18:27:34 current value m.Running:  false
-debug 2025/11/29 18:27:34 
-
- entered startstopmsg update
-debug 2025/11/29 18:27:34 this shouldnt be printed
-debug 2025/11/29 18:27:34 
-{
-  "ActiveTaskId": 28,
-  "StatusQuote": "Session ended!!",
-  "Timer": {
-    "Label": "JSJDS",
-    "Running": true,
-    "Interval": 1000000000,
-    "SessionTime": 0
-  },
-  "CurrentSession": {
-    "id": 30,
-    "start_time": "2025-11-29 18:27:34",
-    "end_time": {
-      "String": "",
-      "Valid": false
-    },
-    "task_id": 28
-  },
-  "Typing": false
-}
-debug 2025/11/29 18:27:34 value passed:  false
-debug 2025/11/29 18:27:34 current value m.Running:  true
-debug 2025/11/29 18:27:34 
-
- entered startstopmsg update
-debug 2025/11/29 18:27:34 
-mrunning: false	msgrunning: false
-debug 2025/11/29 18:27:35 value passed:  true
-debug 2025/11/29 18:27:35 current value m.Running:  false
-debug 2025/11/29 18:27:35 
-
- entered startstopmsg update
-debug 2025/11/29 18:27:35 this shouldnt be printed
-debug 2025/11/29 18:27:36 
-{
-  "ActiveTaskId": 28,
-  "StatusQuote": "Session ended!!",
-  "Timer": {
-    "Label": "JSJDS",
-    "Running": true,
-    "Interval": 1000000000,
-    "SessionTime": 0
-  },
-  "CurrentSession": {
-    "id": 31,
-    "start_time": "2025-11-29 18:27:35",
-    "end_time": {
-      "String": "",
-      "Valid": false
-    },
-    "task_id": 28
-  },
-  "Typing": false
-}
-debug 2025/11/29 18:27:36 value passed:  false
-debug 2025/11/29 18:27:36 current value m.Running:  true
-debug 2025/11/29 18:27:36 
-
- entered startstopmsg update
-debug 2025/11/29 18:27:36 
-mrunning: false	msgrunning: false
-debug 2025/12/02 23:26:00 value passed:  true
-debug 2025/12/02 23:26:00 current value m.Running:  false
-debug 2025/12/02 23:26:00 
-
- entered startstopmsg update
-debug 2025/12/02 23:26:00 this shouldnt be printed
-debug 2025/12/02 23:26:03 
-{
-  "ActiveTaskId": 29,
-  "StatusQuote": "Session ended!!",
-  "Timer": {
-    "Label": "bruhh",
-    "Running": true,
-    "Interval": 1000000000,
-    "SessionTime": 0
-  },
-  "CurrentSession": {
-    "id": 32,
-    "start_time": "2025-12-02 23:26:00",
-    "end_time": {
-      "String": "",
-      "Valid": false
-    },
-    "task_id": 29
-  },
-  "Typing": false
-}
-debug 2025/12/02 23:26:03 value passed:  false
-debug 2025/12/02 23:26:03 current value m.Running:  true
-debug 2025/12/02 23:26:03 
-
- entered startstopmsg update
-debug 2025/12/02 23:26:03 
-mrunning: false	msgrunning: false
-debug 2025/12/02 23:26:05 value passed:  true
-debug 2025/12/02 23:26:05 current value m.Running:  false
-debug 2025/12/02 23:26:05 
-
- entered startstopmsg update
-debug 2025/12/02 23:26:05 this shouldnt be printed
-debug 2025/12/02 23:26:06 
-{
-  "ActiveTaskId": 29,
-  "StatusQuote": "Session ended!!",
-  "Timer": {
-    "Label": "bruhh",
-    "Running": true,
-    "Interval": 1000000000,
-    "SessionTime": 0
-  },
-  "CurrentSession": {
-    "id": 33,
-    "start_time": "2025-12-02 23:26:05",
-    "end_time": {
-      "String": "",
-      "Valid": false
-    },
-    "task_id": 29
-  },
-  "Typing": false
-}
-debug 2025/12/02 23:26:06 value passed:  false
-debug 2025/12/02 23:26:06 current value m.Running:  true
-debug 2025/12/02 23:26:06 
-
- entered startstopmsg update
-debug 2025/12/02 23:26:06 
-mrunning: false	msgrunning: false
-debug 2025/12/02 23:26:07 value passed:  true
-debug 2025/12/02 23:26:07 current value m.Running:  false
-debug 2025/12/02 23:26:07 
-
- entered startstopmsg update
-debug 2025/12/02 23:26:07 this shouldnt be printed
-debug 2025/12/02 23:26:07 
-{
-  "ActiveTaskId": 29,
-  "StatusQuote": "Session ended!!",
-  "Timer": {
-    "Label": "bruhh",
-    "Running": true,
-    "Interval": 1000000000,
-    "SessionTime": 0
-  },
-  "CurrentSession": {
-    "id": 34,
-    "start_time": "2025-12-02 23:26:07",
-    "end_time": {
-      "String": "",
-      "Valid": false
-    },
-    "task_id": 29
-  },
-  "Typing": false
-}
-debug 2025/12/02 23:26:07 value passed:  false
-debug 2025/12/02 23:26:07 current value m.Running:  true
-debug 2025/12/02 23:26:07 
-
- entered startstopmsg update
-debug 2025/12/02 23:26:07 
-mrunning: false	msgrunning: false
-debug 2025/12/02 23:39:55 value passed:  true
-debug 2025/12/02 23:39:55 current value m.Running:  false
-debug 2025/12/02 23:39:55 
-
- entered startstopmsg update
-debug 2025/12/02 23:39:55 this shouldnt be printed
-debug 2025/12/02 23:39:58 
-{
-  "ActiveTaskId": 17,
-  "StatusQuote": "Session ended!!",
-  "Timer": {
-    "Label": "HHH",
-    "Running": true,
-    "Interval": 1000000000,
-    "SessionTime": 0
-  },
-  "CurrentSession": {
-    "id": 35,
-    "start_time": "2025-12-02 23:39:55",
-    "end_time": {
-      "String": "",
-      "Valid": false
-    },
-    "task_id": 17
-  },
-  "Typing": false
-}
-debug 2025/12/02 23:39:58 value passed:  false
-debug 2025/12/02 23:39:58 current value m.Running:  true
-debug 2025/12/02 23:39:58 
-
- entered startstopmsg update
-debug 2025/12/02 23:39:58 
-mrunning: false	msgrunning: false
-debug 2025/12/02 23:40:01 value passed:  true
-debug 2025/12/02 23:40:01 current value m.Running:  false
-debug 2025/12/02 23:40:01 
-
- entered startstopmsg update
-debug 2025/12/02 23:40:01 this shouldnt be printed
-debug 2025/12/02 23:40:03 
-{
-  "ActiveTaskId": 14,
-  "StatusQuote": "Session ended!!",
-  "Timer": {
-    "Label": "ja",
-    "Running": true,
-    "Interval": 1000000000,
-    "SessionTime": 0
-  },
-  "CurrentSession": {
-    "id": 36,
-    "start_time": "2025-12-02 23:40:01",
-    "end_time": {
-      "String": "",
-      "Valid": false
-    },
-    "task_id": 14
-  },
-  "Typing": false
-}
-debug 2025/12/02 23:40:03 value passed:  false
-debug 2025/12/02 23:40:03 current value m.Running:  true
-debug 2025/12/02 23:40:03 
-
- entered startstopmsg update
-debug 2025/12/02 23:40:03 
+debug 2025/12/17 21:44:10 
 mrunning: false	msgrunning: false

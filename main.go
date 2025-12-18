@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strings"
 	"time"
 
 	"github.com/charmbracelet/bubbles/key"
@@ -41,13 +42,13 @@ type model struct {
 
 // TODO: forgot i had these, assign these AFTER the update loop is done
 type keymap struct {
-	//startStopTimer key.Binding
+	startStopTimer key.Binding
 	//switchTimer    key.Binding
-	//exit           key.Binding
+	exit    key.Binding
 	goRight key.Binding
 	goLeft  key.Binding
 	//deleteTask     key.Binding
-	//createTask     key.Binding
+	createTask key.Binding
 	//resetTimer     key.Binding
 }
 
@@ -160,11 +161,11 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	case tea.KeyMsg:
 		if m.Timer.IsRunning() {
 			//TIMER RUNNING
-			switch msg.String() {
-			case "ctrl+c", "q":
+			switch {
+			case key.Matches(msg, m.keymap.exit):
 				m.help = "Please end your session before quitting the app. Press Spacebar/enter to pause the timer"
 				return m, nil
-			case " ", "enter":
+			case key.Matches(msg, m.keymap.startStopTimer):
 				m.StatusQuote = "Session ended!!"
 				log.Printf("\n%+v\n", m)
 				return m.StopSession(), m.Timer.StopCmd()
@@ -184,26 +185,43 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				return m, m.tabs.SwitchLeftCmd()
 			case key.Matches(msg, m.keymap.goRight):
 				return m, m.tabs.SwitchRightCmd()
+			case key.Matches(msg, m.keymap.exit):
+				m.quitting = true
+				return m, tea.Quit
+			case key.Matches(msg, m.keymap.startStopTimer):
+				_, ok := m.tasks[m.ActiveTaskId]
+				if !ok {
+					// TODO: change this later
+					createNewHotkey := strings.Join(m.keymap.createTask.Keys(), "/")
+					m.StatusQuote = "No task selected, press " + createNewHotkey + " to create a new task"
+					return m, nil
+				}
+				m.StatusQuote = "Session Started!"
+				return m.StartSession(), m.Timer.StartCmd()
+			case key.Matches(msg, m.keymap.createTask):
+				cmd = m.textInput.Focus()
+				m.Typing = true
+				return m, cmd
 			}
 
 		}
-		switch msg.String() {
-		case "ctrl+c", "q":
-			m.quitting = true
-			return m, tea.Quit
-		case " ", "enter":
-			_, ok := m.tasks[m.ActiveTaskId]
-			if !ok {
-				m.StatusQuote = "No task selected, press 'n' to create a new task"
-				return m, nil
-			}
-			m.StatusQuote = "Session Started!"
-			return m.StartSession(), m.Timer.StartCmd()
-		case "n":
-			cmd = m.textInput.Focus()
-			m.Typing = true
-			return m, cmd
-		}
+		// switch msg.String() {
+		// case "ctrl+c", "q":
+		// 	m.quitting = true
+		// 	return m, tea.Quit
+		// case " ", "enter":
+		// 	_, ok := m.tasks[m.ActiveTaskId]
+		// 	if !ok {
+		// 		m.StatusQuote = "No task selected, press 'n' to create a new task"
+		// 		return m, nil
+		// 	}
+		// 	m.StatusQuote = "Session Started!"
+		// 	return m.StartSession(), m.Timer.StartCmd()
+		// case "n":
+		// 	cmd = m.textInput.Focus()
+		// 	m.Typing = true
+		// 	return m, cmd
+		// }
 	}
 	return m, nil
 
@@ -278,6 +296,7 @@ func main() {
 		os.Exit(1)
 	}
 	defer f.Close()
+	log.Println("what")
 	sqlitedb, err := sql.Open("sqlite3", "./database/appdb.sqlite")
 	if err != nil {
 		log.Fatalf("Couldn't connect to db: %v", err.Error())

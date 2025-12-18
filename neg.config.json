@@ -1,0 +1,9 @@
+{
+  "start_stop_timer": ["space", "enter"],
+  "exit": ["q", "ctrl+c"],
+  "go_right": ["right", "l"],
+  "go_left": ["left", "h"],
+  "create_task": ["n"],
+  "delete_task": ["x"],
+  "reset_timer": ["r"]
+}
