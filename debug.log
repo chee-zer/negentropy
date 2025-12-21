@@ -68,3 +68,323 @@ debug 2025/12/17 21:44:10
  entered startstopmsg update
 debug 2025/12/17 21:44:10 
 mrunning: false	msgrunning: false
+debug 2025/12/21 06:00:21 what
+debug 2025/12/21 06:02:34 value passed:  true
+debug 2025/12/21 06:02:34 current value m.Running:  false
+debug 2025/12/21 06:02:34 
+
+ entered startstopmsg update
+debug 2025/12/21 06:02:34 this shouldnt be printed
+debug 2025/12/21 06:02:35 
+{
+  "ActiveTaskId": 15,
+  "StatusQuote": "Session ended!!",
+  "Timer": {
+    "Label": "JIG",
+    "Running": true,
+    "Interval": 1000000000,
+    "SessionTime": 0
+  },
+  "CurrentSession": {
+    "id": 39,
+    "start_time": "2025-12-21 06:02:34",
+    "end_time": {
+      "String": "",
+      "Valid": false
+    },
+    "task_id": 15
+  },
+  "Typing": false
+}
+debug 2025/12/21 06:02:35 value passed:  false
+debug 2025/12/21 06:02:35 current value m.Running:  true
+debug 2025/12/21 06:02:35 
+
+ entered startstopmsg update
+debug 2025/12/21 06:02:35 
+mrunning: false	msgrunning: false
+debug 2025/12/21 06:03:52 what
+debug 2025/12/21 06:11:33 what
+debug 2025/12/21 06:11:37 value passed:  true
+debug 2025/12/21 06:11:37 current value m.Running:  false
+debug 2025/12/21 06:11:37 
+
+ entered startstopmsg update
+debug 2025/12/21 06:11:37 this shouldnt be printed
+debug 2025/12/21 06:11:37 
+{
+  "ActiveTaskId": 2,
+  "StatusQuote": "Session ended!!",
+  "Timer": {
+    "Label": "XXX",
+    "Running": true,
+    "Interval": 1000000000,
+    "SessionTime": 0
+  },
+  "CurrentSession": {
+    "id": 40,
+    "start_time": "2025-12-21 06:11:37",
+    "end_time": {
+      "String": "",
+      "Valid": false
+    },
+    "task_id": 2
+  },
+  "Typing": false
+}
+debug 2025/12/21 06:11:37 value passed:  false
+debug 2025/12/21 06:11:37 current value m.Running:  true
+debug 2025/12/21 06:11:37 
+
+ entered startstopmsg update
+debug 2025/12/21 06:11:37 
+mrunning: false	msgrunning: false
+debug 2025/12/21 06:11:54 what
+debug 2025/12/21 06:12:05 value passed:  true
+debug 2025/12/21 06:12:05 current value m.Running:  false
+debug 2025/12/21 06:12:05 
+
+ entered startstopmsg update
+debug 2025/12/21 06:12:05 this shouldnt be printed
+debug 2025/12/21 06:12:05 
+{
+  "ActiveTaskId": 8,
+  "StatusQuote": "Session ended!!",
+  "Timer": {
+    "Label": "CCC",
+    "Running": true,
+    "Interval": 1000000000,
+    "SessionTime": 0
+  },
+  "CurrentSession": {
+    "id": 41,
+    "start_time": "2025-12-21 06:12:05",
+    "end_time": {
+      "String": "",
+      "Valid": false
+    },
+    "task_id": 8
+  },
+  "Typing": false
+}
+debug 2025/12/21 06:12:05 value passed:  false
+debug 2025/12/21 06:12:05 current value m.Running:  true
+debug 2025/12/21 06:12:05 
+
+ entered startstopmsg update
+debug 2025/12/21 06:12:05 
+mrunning: false	msgrunning: false
+debug 2025/12/21 06:12:25 gowhat
+debug 2025/12/21 06:12:33 value passed:  true
+debug 2025/12/21 06:12:33 current value m.Running:  false
+debug 2025/12/21 06:12:33 
+
+ entered startstopmsg update
+debug 2025/12/21 06:12:33 this shouldnt be printed
+debug 2025/12/21 06:12:33 
+{
+  "ActiveTaskId": 6,
+  "StatusQuote": "Session ended!!",
+  "Timer": {
+    "Label": "XXY",
+    "Running": true,
+    "Interval": 1000000000,
+    "SessionTime": 0
+  },
+  "CurrentSession": {
+    "id": 42,
+    "start_time": "2025-12-21 06:12:33",
+    "end_time": {
+      "String": "",
+      "Valid": false
+    },
+    "task_id": 6
+  },
+  "Typing": false
+}
+debug 2025/12/21 06:12:33 value passed:  false
+debug 2025/12/21 06:12:33 current value m.Running:  true
+debug 2025/12/21 06:12:33 
+
+ entered startstopmsg update
+debug 2025/12/21 06:12:33 
+mrunning: false	msgrunning: false
+debug 2025/12/21 06:12:42 gowhat
+debug 2025/12/21 06:12:59 gowhat
+debug 2025/12/21 06:13:00 value passed:  true
+debug 2025/12/21 06:13:00 current value m.Running:  false
+debug 2025/12/21 06:13:00 
+
+ entered startstopmsg update
+debug 2025/12/21 06:13:00 this shouldnt be printed
+debug 2025/12/21 06:13:01 
+{
+  "ActiveTaskId": 3,
+  "StatusQuote": "Session ended!!",
+  "Timer": {
+    "Label": "yo",
+    "Running": true,
+    "Interval": 1000000000,
+    "SessionTime": 0
+  },
+  "CurrentSession": {
+    "id": 43,
+    "start_time": "2025-12-21 06:13:00",
+    "end_time": {
+      "String": "",
+      "Valid": false
+    },
+    "task_id": 3
+  },
+  "Typing": false
+}
+debug 2025/12/21 06:13:01 value passed:  false
+debug 2025/12/21 06:13:01 current value m.Running:  true
+debug 2025/12/21 06:13:01 
+
+ entered startstopmsg update
+debug 2025/12/21 06:13:01 
+mrunning: false	msgrunning: false
+debug 2025/12/21 06:16:48 gowhat
+debug 2025/12/21 06:18:12 gowhat
+debug 2025/12/21 06:18:49 gowhat
+debug 2025/12/21 06:21:56 gowhat
+debug 2025/12/21 06:23:22 gowhat
+debug 2025/12/21 06:27:03 gowhat
+debug 2025/12/21 06:27:15 value passed:  true
+debug 2025/12/21 06:27:15 current value m.Running:  false
+debug 2025/12/21 06:27:15 
+
+ entered startstopmsg update
+debug 2025/12/21 06:27:15 this shouldnt be printed
+debug 2025/12/21 06:27:15 
+{
+  "ActiveTaskId": 2,
+  "StatusQuote": "Session ended!!",
+  "Timer": {
+    "Label": "XXX",
+    "Running": true,
+    "Interval": 1000000000,
+    "SessionTime": 0
+  },
+  "CurrentSession": {
+    "id": 44,
+    "start_time": "2025-12-21 06:27:15",
+    "end_time": {
+      "String": "",
+      "Valid": false
+    },
+    "task_id": 2
+  },
+  "Typing": false
+}
+debug 2025/12/21 06:27:15 value passed:  false
+debug 2025/12/21 06:27:15 current value m.Running:  true
+debug 2025/12/21 06:27:15 
+
+ entered startstopmsg update
+debug 2025/12/21 06:27:15 
+mrunning: false	msgrunning: false
+debug 2025/12/21 06:27:17 value passed:  true
+debug 2025/12/21 06:27:17 current value m.Running:  false
+debug 2025/12/21 06:27:17 
+
+ entered startstopmsg update
+debug 2025/12/21 06:27:17 this shouldnt be printed
+debug 2025/12/21 06:27:17 
+{
+  "ActiveTaskId": 1,
+  "StatusQuote": "Session ended!!",
+  "Timer": {
+    "Label": "this is a task",
+    "Running": true,
+    "Interval": 1000000000,
+    "SessionTime": 0
+  },
+  "CurrentSession": {
+    "id": 45,
+    "start_time": "2025-12-21 06:27:17",
+    "end_time": {
+      "String": "",
+      "Valid": false
+    },
+    "task_id": 1
+  },
+  "Typing": false
+}
+debug 2025/12/21 06:27:17 value passed:  false
+debug 2025/12/21 06:27:17 current value m.Running:  true
+debug 2025/12/21 06:27:17 
+
+ entered startstopmsg update
+debug 2025/12/21 06:27:17 
+mrunning: false	msgrunning: false
+debug 2025/12/21 06:27:20 value passed:  true
+debug 2025/12/21 06:27:20 current value m.Running:  false
+debug 2025/12/21 06:27:20 
+
+ entered startstopmsg update
+debug 2025/12/21 06:27:20 this shouldnt be printed
+debug 2025/12/21 06:27:21 
+{
+  "ActiveTaskId": 7,
+  "StatusQuote": "Session ended!!",
+  "Timer": {
+    "Label": "what",
+    "Running": true,
+    "Interval": 1000000000,
+    "SessionTime": 0
+  },
+  "CurrentSession": {
+    "id": 46,
+    "start_time": "2025-12-21 06:27:20",
+    "end_time": {
+      "String": "",
+      "Valid": false
+    },
+    "task_id": 7
+  },
+  "Typing": false
+}
+debug 2025/12/21 06:27:21 value passed:  false
+debug 2025/12/21 06:27:21 current value m.Running:  true
+debug 2025/12/21 06:27:21 
+
+ entered startstopmsg update
+debug 2025/12/21 06:27:21 
+mrunning: false	msgrunning: false
+debug 2025/12/21 06:27:25 value passed:  true
+debug 2025/12/21 06:27:25 current value m.Running:  false
+debug 2025/12/21 06:27:25 
+
+ entered startstopmsg update
+debug 2025/12/21 06:27:25 this shouldnt be printed
+debug 2025/12/21 06:27:26 
+{
+  "ActiveTaskId": 7,
+  "StatusQuote": "Session ended!!",
+  "Timer": {
+    "Label": "what",
+    "Running": true,
+    "Interval": 1000000000,
+    "SessionTime": 0
+  },
+  "CurrentSession": {
+    "id": 47,
+    "start_time": "2025-12-21 06:27:25",
+    "end_time": {
+      "String": "",
+      "Valid": false
+    },
+    "task_id": 7
+  },
+  "Typing": false
+}
+debug 2025/12/21 06:27:26 value passed:  false
+debug 2025/12/21 06:27:26 current value m.Running:  true
+debug 2025/12/21 06:27:26 
+
+ entered startstopmsg update
+debug 2025/12/21 06:27:26 
+mrunning: false	msgrunning: false
+debug 2025/12/21 06:28:14 gowhat

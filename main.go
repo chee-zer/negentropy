@@ -42,29 +42,24 @@ type model struct {
 
 // TODO: forgot i had these, assign these AFTER the update loop is done
 type keymap struct {
-	startStopTimer key.Binding
+	StartStopTimer key.Binding
 	//switchTimer    key.Binding
-	exit    key.Binding
-	goRight key.Binding
-	goLeft  key.Binding
-	//deleteTask     key.Binding
-	createTask key.Binding
-	//resetTimer     key.Binding
+	Exit       key.Binding
+	GoRight    key.Binding
+	GoLeft     key.Binding
+	DeleteTask key.Binding
+	CreateTask key.Binding
+	ResetTimer key.Binding
 }
 
-func NewModel(queries *db.Queries) model {
+func NewModel(queries *db.Queries, cfg keymap, errs error) model {
 	taskMap, tasks, err := GetTaskMap(queries)
 	if err != nil {
 		log.Fatalf("couldn't not load tasks: %v", err)
 	}
-
-	keymapvalues := keymap{
-		goRight: key.NewBinding(
-			key.WithKeys("right"),
-		),
-		goLeft: key.NewBinding(
-			key.WithKeys("left"),
-		),
+	errorString := "Config loaded successfully!"
+	if errs != nil {
+		errorString = errs.Error()
 	}
 
 	dummyTimer := stopwatch.NewTimer("dummy")
@@ -78,14 +73,14 @@ func NewModel(queries *db.Queries) model {
 		db:             queries,
 		tasks:          taskMap,
 		ActiveTaskId:   0,
-		StatusQuote:    "this is status quote",
+		StatusQuote:    errorString,
 		help:           "this is help string",
 		quitting:       false,
 		Timer:          dummyTimer,
 		CurrentSession: nil,
 		textInput:      ti,
 		Typing:         false,
-		keymap:         keymapvalues,
+		keymap:         cfg,
 		tabs:           tabs,
 	}
 }
@@ -162,10 +157,10 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		if m.Timer.IsRunning() {
 			//TIMER RUNNING
 			switch {
-			case key.Matches(msg, m.keymap.exit):
+			case key.Matches(msg, m.keymap.Exit):
 				m.help = "Please end your session before quitting the app. Press Spacebar/enter to pause the timer"
 				return m, nil
-			case key.Matches(msg, m.keymap.startStopTimer):
+			case key.Matches(msg, m.keymap.StartStopTimer):
 				m.StatusQuote = "Session ended!!"
 				log.Printf("\n%+v\n", m)
 				return m.StopSession(), m.Timer.StopCmd()
@@ -181,47 +176,30 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				m = m.NoTaskView()
 			}
 			switch {
-			case key.Matches(msg, m.keymap.goLeft):
+			case key.Matches(msg, m.keymap.GoLeft):
 				return m, m.tabs.SwitchLeftCmd()
-			case key.Matches(msg, m.keymap.goRight):
+			case key.Matches(msg, m.keymap.GoRight):
 				return m, m.tabs.SwitchRightCmd()
-			case key.Matches(msg, m.keymap.exit):
+			case key.Matches(msg, m.keymap.Exit):
 				m.quitting = true
 				return m, tea.Quit
-			case key.Matches(msg, m.keymap.startStopTimer):
+			case key.Matches(msg, m.keymap.StartStopTimer):
 				_, ok := m.tasks[m.ActiveTaskId]
 				if !ok {
 					// TODO: change this later
-					createNewHotkey := strings.Join(m.keymap.createTask.Keys(), "/")
+					createNewHotkey := strings.Join(m.keymap.CreateTask.Keys(), "/")
 					m.StatusQuote = "No task selected, press " + createNewHotkey + " to create a new task"
 					return m, nil
 				}
 				m.StatusQuote = "Session Started!"
 				return m.StartSession(), m.Timer.StartCmd()
-			case key.Matches(msg, m.keymap.createTask):
+			case key.Matches(msg, m.keymap.CreateTask):
 				cmd = m.textInput.Focus()
 				m.Typing = true
 				return m, cmd
 			}
 
 		}
-		// switch msg.String() {
-		// case "ctrl+c", "q":
-		// 	m.quitting = true
-		// 	return m, tea.Quit
-		// case " ", "enter":
-		// 	_, ok := m.tasks[m.ActiveTaskId]
-		// 	if !ok {
-		// 		m.StatusQuote = "No task selected, press 'n' to create a new task"
-		// 		return m, nil
-		// 	}
-		// 	m.StatusQuote = "Session Started!"
-		// 	return m.StartSession(), m.Timer.StartCmd()
-		// case "n":
-		// 	cmd = m.textInput.Focus()
-		// 	m.Typing = true
-		// 	return m, cmd
-		// }
 	}
 	return m, nil
 
@@ -295,8 +273,10 @@ func main() {
 		fmt.Println("fatal:", err)
 		os.Exit(1)
 	}
+	log.Println("gowhat")
+	cfg, err := GetConfig("./neg.config.json")
+
 	defer f.Close()
-	log.Println("what")
 	sqlitedb, err := sql.Open("sqlite3", "./database/appdb.sqlite")
 	if err != nil {
 		log.Fatalf("Couldn't connect to db: %v", err.Error())
@@ -305,7 +285,7 @@ func main() {
 
 	queries := db.New(sqlitedb)
 
-	p := tea.NewProgram(NewModel(queries))
+	p := tea.NewProgram(NewModel(queries, cfg, err))
 
 	if _, err := p.Run(); err != nil {
 		fmt.Printf("could'nt run program: %v", err)

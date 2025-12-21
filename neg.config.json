@@ -1,5 +1,5 @@
 {
-  "start_stop_timer": ["space", "enter"],
+  "start_stop_timer": [" ", "p"],
   "exit": ["q", "ctrl+c"],
   "go_right": ["right", "l"],
   "go_left": ["left", "h"],
