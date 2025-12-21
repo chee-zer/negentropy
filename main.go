@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"database/sql"
-	"encoding/json"
 	"fmt"
 	"log"
 	"os"
@@ -33,23 +32,14 @@ type model struct {
 	Typing         bool
 	keymap         keymap
 }
-
-// global keymap
-// timer - start/stop(space, enter)
-// switch timer while timer not running(tab, l)
-//
-// exit (q)
-
-// TODO: forgot i had these, assign these AFTER the update loop is done
 type keymap struct {
 	StartStopTimer key.Binding
-	//switchTimer    key.Binding
-	Exit       key.Binding
-	GoRight    key.Binding
-	GoLeft     key.Binding
-	DeleteTask key.Binding
-	CreateTask key.Binding
-	ResetTimer key.Binding
+	Exit           key.Binding
+	GoRight        key.Binding
+	GoLeft         key.Binding
+	DeleteTask     key.Binding
+	CreateTask     key.Binding
+	ResetTimer     key.Binding
 }
 
 func NewModel(queries *db.Queries, cfg keymap, errs error) model {
@@ -257,14 +247,6 @@ func (m model) StopSession() model {
 	m.db.EndSession(context.Background(), endSessionParams)
 
 	return m
-}
-
-func (m model) String() string {
-	b, err := json.MarshalIndent(m, "", "  ")
-	if err != nil {
-		return fmt.Sprintf("error: %v", err)
-	}
-	return string(b)
 }
 
 func main() {
