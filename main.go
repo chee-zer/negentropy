@@ -289,7 +289,7 @@ func main() {
 		fmt.Println("fatal:", err)
 		os.Exit(1)
 	}
-	log.Println("gowhat")
+	// err here wont terminate the app, infact the app will launch with default keybindings
 	cfg, err := GetConfig("./neg.config.json")
 
 	defer f.Close()
