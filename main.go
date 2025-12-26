@@ -29,8 +29,8 @@ type model struct {
 	quitting       bool
 	CurrentSession *db.Session
 	textInput      textinput.Model
-	Typing         bool
 	keymap         keymap
+	state          appState
 }
 type keymap struct {
 	StartStopTimer key.Binding
@@ -41,6 +41,15 @@ type keymap struct {
 	CreateTask     key.Binding
 	ResetTimer     key.Binding
 }
+
+type appState int
+
+const (
+	TimerNotRunning appState = iota // 0
+	TimerRunning                    // 1
+	Typing                          // 2
+	Confirming                      // 3
+)
 
 func NewModel(queries *db.Queries, cfg keymap, errs error) model {
 	taskMap, tasks, err := GetTaskMap(queries)
@@ -58,20 +67,25 @@ func NewModel(queries *db.Queries, cfg keymap, errs error) model {
 	ti.CharLimit = 20
 	ti.Width = 20
 
+	activeId := int64(0)
+	if len(tasks) >= 1 {
+		activeId = 1
+	}
+
 	tabs := NewTabModel(tasks)
 	return model{
 		db:             queries,
 		tasks:          taskMap,
-		ActiveTaskId:   0,
+		ActiveTaskId:   activeId,
 		StatusQuote:    errorString,
 		help:           "this is help string",
 		quitting:       false,
 		Timer:          dummyTimer,
 		CurrentSession: nil,
 		textInput:      ti,
-		Typing:         false,
 		keymap:         cfg,
 		tabs:           tabs,
+		state:          TimerNotRunning,
 	}
 }
 
@@ -80,54 +94,6 @@ func (m model) Init() tea.Cmd {
 }
 
 func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
-	var cmd tea.Cmd
-
-	if m.Typing {
-		switch msg := msg.(type) {
-		case tea.KeyMsg:
-			switch msg.Type {
-			case tea.KeyEnter:
-				newTaskName := m.textInput.Value()
-				taskCreatingParams := db.CreateTaskParams{
-					Name: newTaskName,
-					ColorHex: sql.NullString{String: "what",
-						Valid: true},
-					DailyTarget: sql.NullInt64{
-						Int64: 3600,
-						Valid: true,
-					},
-				}
-
-				task, err := m.db.CreateTask(context.Background(), taskCreatingParams)
-				if err != nil {
-					m.StatusQuote = "Couldn't create task: " + err.Error()
-					m.textInput.Reset()
-
-					return m, m.textInput.Focus()
-				}
-				m.Typing = false
-
-				// adding the task in main model and switching to it
-				m.tasks[task.ID] = task
-				m.ActiveTaskId = task.ID
-				m.tabs.Tasks = append(m.tabs.Tasks, task)
-				m.tabs.ActiveTabIndex = len(m.tabs.Tasks) - 1
-				m.textInput.Reset()
-				m.textInput.Blur()
-				m.StatusQuote = "Task created"
-				return m, nil
-
-			case tea.KeyEsc:
-				m.textInput.Reset()
-				m.Typing = false
-				m.StatusQuote = "Task not created -_-"
-				m.textInput.Blur()
-			}
-
-			m.textInput, cmd = m.textInput.Update(msg)
-			return m, cmd
-		}
-	}
 
 	switch msg := msg.(type) {
 	case stopwatch.ResetMsg, stopwatch.StartStopMsg, stopwatch.TickMsg:
@@ -144,50 +110,14 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		return m, tabCmd
 
 	case tea.KeyMsg:
-		if m.Timer.IsRunning() {
-			//TIMER RUNNING
-			switch {
-			case key.Matches(msg, m.keymap.Exit):
-				m.help = "Please end your session before quitting the app. Press Spacebar/enter to pause the timer"
-				return m, nil
-			case key.Matches(msg, m.keymap.StartStopTimer):
-				m.StatusQuote = "Session ended!!"
-				log.Printf("\n%+v\n", m)
-				return m.StopSession(), m.Timer.StopCmd()
-			}
-			if len(m.tasks) == 0 {
-				m = m.NoTaskView()
-				return m, nil
-			}
-
-		} else {
-			//TIMER STOPPED
-			if len(m.tasks) == 0 {
-				m = m.NoTaskView()
-			}
-			switch {
-			case key.Matches(msg, m.keymap.GoLeft):
-				return m, m.tabs.SwitchLeftCmd()
-			case key.Matches(msg, m.keymap.GoRight):
-				return m, m.tabs.SwitchRightCmd()
-			case key.Matches(msg, m.keymap.Exit):
-				m.quitting = true
-				return m, tea.Quit
-			case key.Matches(msg, m.keymap.StartStopTimer):
-				_, ok := m.tasks[m.ActiveTaskId]
-				if !ok {
-					// TODO: change this later
-					createNewHotkey := strings.Join(m.keymap.CreateTask.Keys(), "/")
-					m.StatusQuote = "No task selected, press " + createNewHotkey + " to create a new task"
-					return m, nil
-				}
-				m.StatusQuote = "Session Started!"
-				return m.StartSession(), m.Timer.StartCmd()
-			case key.Matches(msg, m.keymap.CreateTask):
-				cmd = m.textInput.Focus()
-				m.Typing = true
-				return m, cmd
-			}
+		switch m.state {
+		case TimerNotRunning:
+			return m.updateTimerNotRunning(msg)
+		case TimerRunning:
+			return m.updateTimerRunning(msg)
+		case Typing:
+			return m.updateTyping(msg)
+		case Confirming:
 
 		}
 	}
@@ -233,6 +163,7 @@ func (m model) StartSession() model {
 	}
 	timer := stopwatch.NewTimerRunning(m.tasks[taskID].Name)
 	m.Timer = timer
+	m.state = TimerRunning
 	m.CurrentSession = &session
 	return m
 }
@@ -245,8 +176,108 @@ func (m model) StopSession() model {
 		TaskID:  taskID,
 	}
 	m.db.EndSession(context.Background(), endSessionParams)
-
+	m.state = TimerNotRunning
 	return m
+}
+
+func (m model) updateTimerNotRunning(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
+	//TIMER STOPPED
+	if len(m.tasks) == 0 {
+		m = m.NoTaskView()
+	}
+
+	var cmd tea.Cmd
+	switch {
+	case key.Matches(msg, m.keymap.GoLeft):
+		return m, m.tabs.SwitchLeftCmd()
+	case key.Matches(msg, m.keymap.GoRight):
+		return m, m.tabs.SwitchRightCmd()
+	case key.Matches(msg, m.keymap.Exit):
+		m.quitting = true
+		return m, tea.Quit
+	case key.Matches(msg, m.keymap.StartStopTimer):
+		_, ok := m.tasks[m.ActiveTaskId]
+		if !ok {
+			// TODO: change this later(Stringer for all the keys)
+			createNewHotkey := strings.Join(m.keymap.CreateTask.Keys(), "/")
+			m.StatusQuote = "No task selected, press " + createNewHotkey + " to create a new task"
+			return m, nil
+		}
+		if m.state == TimerRunning {
+			m.StatusQuote = "Session Started!"
+			return m, m.Timer.StartCmd()
+		}
+	case key.Matches(msg, m.keymap.CreateTask):
+		cmd = m.textInput.Focus()
+		m.state = Typing
+		return m, cmd
+	case key.Matches(msg, m.keymap.DeleteTask):
+
+	}
+	return m, nil
+}
+
+func (m model) updateTimerRunning(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
+	switch {
+	case key.Matches(msg, m.keymap.Exit):
+		m.help = "Please end your session before quitting the app. Press Spacebar/enter to pause the timer"
+		return m, nil
+	case key.Matches(msg, m.keymap.StartStopTimer):
+		m.StatusQuote = "Session ended!!"
+		log.Printf("\n%+v\n", m)
+		return m.StopSession(), m.Timer.StopCmd()
+	}
+	if len(m.tasks) == 0 {
+		m = m.NoTaskView()
+		return m, nil
+	}
+
+	return m, nil
+}
+
+func (m model) updateTyping(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
+	var cmd tea.Cmd
+	switch msg.Type {
+	case tea.KeyEnter:
+		newTaskName := m.textInput.Value()
+		taskCreatingParams := db.CreateTaskParams{
+			Name: newTaskName,
+			ColorHex: sql.NullString{String: "what",
+				Valid: true},
+			DailyTarget: sql.NullInt64{
+				Int64: 3600,
+				Valid: true,
+			},
+		}
+
+		task, err := m.db.CreateTask(context.Background(), taskCreatingParams)
+		if err != nil {
+			m.StatusQuote = "Couldn't create task: " + err.Error()
+			m.textInput.Reset()
+
+			return m, m.textInput.Focus()
+		}
+		m.state = TimerNotRunning
+
+		// adding the task in main model and switching to it
+		m.tasks[task.ID] = task
+		m.ActiveTaskId = task.ID
+		m.tabs.Tasks = append(m.tabs.Tasks, task)
+		m.tabs.ActiveTabIndex = len(m.tabs.Tasks) - 1
+		m.textInput.Reset()
+		m.textInput.Blur()
+		m.StatusQuote = "Task created"
+		return m, nil
+
+	case tea.KeyEsc:
+		m.textInput.Reset()
+		m.state = TimerNotRunning
+		m.StatusQuote = "Task not created -_-"
+		m.textInput.Blur()
+	}
+
+	m.textInput, cmd = m.textInput.Update(msg)
+	return m, cmd
 }
 
 func main() {
@@ -275,3 +306,5 @@ func main() {
 	}
 
 }
+
+// TIMERNOTRUNNINGBUG
