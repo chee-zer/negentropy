@@ -116,6 +116,7 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		case TimerRunning:
 			return m.updateTimerRunning(msg)
 		case Typing:
+			// cursor will not blink cuz only keyMsg being passed
 			return m.updateTyping(msg)
 		case Confirming:
 
@@ -203,6 +204,8 @@ func (m model) updateTimerNotRunning(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
 			m.StatusQuote = "No task selected, press " + createNewHotkey + " to create a new task"
 			return m, nil
 		}
+		m = m.StartSession()
+		// if timer doesn't start due to db error, will return m, nil
 		if m.state == TimerRunning {
 			m.StatusQuote = "Session Started!"
 			return m, m.Timer.StartCmd()
@@ -306,5 +309,3 @@ func main() {
 	}
 
 }
-
-// TIMERNOTRUNNINGBUG
