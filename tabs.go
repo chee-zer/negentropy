@@ -20,6 +20,10 @@ type SwitchMsg struct {
 	direction bool
 }
 
+type DeleteSelectedTaskMsg struct {
+	taskID int64
+}
+
 type SwitchSelectedTaskMsg struct {
 	taskID int64
 }
@@ -28,6 +32,15 @@ func (m TabModel) SwitchSelectedTaskCmd() tea.Cmd {
 	activeTask := m.Tasks[m.ActiveTabIndex]
 	return func() tea.Msg {
 		return SwitchSelectedTaskMsg{
+			taskID: activeTask.ID,
+		}
+	}
+}
+
+func (m TabModel) DeleteSelectedTask() tea.Cmd {
+	m.Tasks = append(m.Tasks[:m.ActiveTabIndex], m.Tasks[m.ActiveTabIndex+1:]...)
+	return func() tea.Msg {
+		return DeleteSelectedTaskMsg{
 			taskID: activeTask.ID,
 		}
 	}
