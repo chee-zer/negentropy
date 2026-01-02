@@ -20,9 +20,7 @@ type SwitchMsg struct {
 	direction bool
 }
 
-type DeleteSelectedTaskMsg struct {
-	taskID int64
-}
+type DeleteSelectedTaskMsg struct{}
 
 type SwitchSelectedTaskMsg struct {
 	taskID int64
@@ -38,11 +36,8 @@ func (m TabModel) SwitchSelectedTaskCmd() tea.Cmd {
 }
 
 func (m TabModel) DeleteSelectedTask() tea.Cmd {
-	m.Tasks = append(m.Tasks[:m.ActiveTabIndex], m.Tasks[m.ActiveTabIndex+1:]...)
 	return func() tea.Msg {
-		return DeleteSelectedTaskMsg{
-			taskID: activeTask.ID,
-		}
+		return DeleteSelectedTaskMsg{}
 	}
 }
 
@@ -83,6 +78,10 @@ func (m TabModel) Init() tea.Cmd {
 
 func (m TabModel) Update(msg tea.Msg) (TabModel, tea.Cmd) {
 	switch msg := msg.(type) {
+	case DeleteSelectedTaskMsg:
+		m.Tasks = append(m.Tasks[:m.ActiveTabIndex], m.Tasks[m.ActiveTabIndex+1:]...)
+		return m, m.SwitchRightCmd()
+
 	case SwitchMsg:
 		if msg.direction {
 			m.ActiveTabIndex = (len(m.Tasks) + m.ActiveTabIndex + 1) % len(m.Tasks)
