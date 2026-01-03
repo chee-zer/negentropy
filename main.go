@@ -31,6 +31,7 @@ type model struct {
 	textInput      textinput.Model
 	keymap         keymap
 	state          appState
+	pendingAction  currentAction
 }
 type keymap struct {
 	StartStopTimer key.Binding
@@ -40,15 +41,24 @@ type keymap struct {
 	DeleteTask     key.Binding
 	CreateTask     key.Binding
 	ResetTimer     key.Binding
+	Yes            key.Binding
+	No             key.Binding
 }
 
 type appState int
 
 const (
-	TimerNotRunning appState = iota // 0
-	TimerRunning                    // 1
-	Typing                          // 2
-	Confirming                      // 3
+	TimerNotRunning appState = iota
+	TimerRunning
+	Typing
+	Confirming
+)
+
+type currentAction int
+
+const (
+	deleteTask currentAction = iota
+	resetTimer
 )
 
 func NewModel(queries *db.Queries, cfg keymap, errs error) model {
@@ -101,6 +111,10 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		m.Timer, timerCmd = m.Timer.Update(msg)
 		return m, timerCmd
 
+	case DeleteSelectedTaskMsg:
+		var tabCmd tea.Cmd
+		m.tabs, tabCmd = m.tabs.Update(msg)
+		return m, tabCmd
 	case SwitchSelectedTaskMsg:
 		m.ActiveTaskId = msg.taskID
 	case SwitchMsg:
@@ -119,7 +133,7 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			// cursor will not blink cuz only keyMsg being passed
 			return m.updateTyping(msg)
 		case Confirming:
-
+			return m.updateConfirming(msg)
 		}
 	}
 	return m, nil
@@ -181,6 +195,11 @@ func (m model) StopSession() model {
 	return m
 }
 
+func (m model) ResetSession() model {
+	return m
+
+}
+
 func (m model) updateTimerNotRunning(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
 	//TIMER STOPPED
 	if len(m.tasks) == 0 {
@@ -207,7 +226,7 @@ func (m model) updateTimerNotRunning(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
 		m = m.StartSession()
 		// if timer doesn't start due to db error, will return m, nil
 		if m.state == TimerRunning {
-			m.StatusQuote = "Session Started!"
+			m.StatusQuote = "Session Started: " + m.tasks[m.ActiveTaskId].Name
 			return m, m.Timer.StartCmd()
 		}
 	case key.Matches(msg, m.keymap.CreateTask):
@@ -215,7 +234,9 @@ func (m model) updateTimerNotRunning(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
 		m.state = Typing
 		return m, cmd
 	case key.Matches(msg, m.keymap.DeleteTask):
-
+		m.StatusQuote = "Delete task? y/n"
+		m.state = Confirming
+		return m, nil
 	}
 	return m, nil
 }
@@ -227,7 +248,6 @@ func (m model) updateTimerRunning(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
 		return m, nil
 	case key.Matches(msg, m.keymap.StartStopTimer):
 		m.StatusQuote = "Session ended!!"
-		log.Printf("\n%+v\n", m)
 		return m.StopSession(), m.Timer.StopCmd()
 	}
 	if len(m.tasks) == 0 {
@@ -281,6 +301,31 @@ func (m model) updateTyping(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
 
 	m.textInput, cmd = m.textInput.Update(msg)
 	return m, cmd
+}
+
+func (m model) updateConfirming(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
+	switch {
+	case key.Matches(msg, m.keymap.Exit):
+		return m, tea.Quit
+	case key.Matches(msg, m.keymap.No):
+		m.state = TimerNotRunning
+		m.StatusQuote = m.tasks[m.ActiveTaskId].Name
+		return m, nil
+	case key.Matches(msg, m.keymap.Yes):
+		switch m.pendingAction {
+		case deleteTask:
+			err := m.db.DeleteTask(context.Background(), m.ActiveTaskId)
+			if err != nil {
+				m.StatusQuote = "Couldn't delete task: " + err.Error()
+			}
+			m.StatusQuote = "deleted: " + m.tasks[m.ActiveTaskId].Name
+			m.state = TimerNotRunning
+			return m, m.tabs.DeleteSelectedTaskCmd()
+		case resetTimer:
+
+		}
+	}
+	return m, nil
 }
 
 func main() {

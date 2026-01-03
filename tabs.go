@@ -35,7 +35,7 @@ func (m TabModel) SwitchSelectedTaskCmd() tea.Cmd {
 	}
 }
 
-func (m TabModel) DeleteSelectedTask() tea.Cmd {
+func (m TabModel) DeleteSelectedTaskCmd() tea.Cmd {
 	return func() tea.Msg {
 		return DeleteSelectedTaskMsg{}
 	}

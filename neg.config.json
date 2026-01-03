@@ -5,5 +5,7 @@
   "go_left": ["left", "h"],
   "create_task": ["n"],
   "delete_task": ["x"],
-  "reset_timer": ["r"]
+  "reset_timer": ["r"],
+  "yes": ["y"],
+  "no": ["n"]
 }

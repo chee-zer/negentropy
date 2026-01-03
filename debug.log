@@ -1,424 +1,188 @@
-debug 2025/12/17 21:43:41 what
-debug 2025/12/17 21:44:05 what
-debug 2025/12/17 21:44:06 value passed:  true
-debug 2025/12/17 21:44:06 current value m.Running:  false
-debug 2025/12/17 21:44:06 
+
+debug 2026/01/03 23:04:29 Now Confirming
+debug 2026/01/03 23:04:30 Now Confirming
+debug 2026/01/03 23:04:31 Now Confirming
+debug 2026/01/03 23:04:31 Now Confirming
+debug 2026/01/03 23:04:32 Now Confirming
+debug 2026/01/03 23:04:32 Now Confirming
+debug 2026/01/03 23:04:33 Now Confirming
+debug 2026/01/03 23:04:33 Now Confirming
+debug 2026/01/03 23:04:34 Now Confirming
+debug 2026/01/03 23:04:34 Now Confirming
+debug 2026/01/03 23:04:34 Now Confirming
+debug 2026/01/03 23:04:35 Now Confirming
+debug 2026/01/03 23:04:35 Now Confirming
+debug 2026/01/03 23:04:35 Now Confirming
+debug 2026/01/03 23:04:35 Now Confirming
+debug 2026/01/03 23:04:36 Now Confirming
+debug 2026/01/03 23:04:36 Now Confirming
+debug 2026/01/03 23:04:36 Now Confirming
+debug 2026/01/03 23:04:36 Now Confirming
+debug 2026/01/03 23:04:37 Now Confirming
+debug 2026/01/03 23:04:37 Now Confirming
+debug 2026/01/03 23:04:37 Now Confirming
+debug 2026/01/03 23:04:37 Now Confirming
+debug 2026/01/03 23:04:38 Now Confirming
+debug 2026/01/03 23:04:41 Now Confirming
+debug 2026/01/03 23:04:41 Exiting
+debug 2026/01/03 23:08:58 Now Confirming
+debug 2026/01/03 23:08:58 YESSS
+debug 2026/01/03 23:09:04 Now Confirming
+debug 2026/01/03 23:09:04 YESSS
+debug 2026/01/03 23:09:11 Now Confirming
+debug 2026/01/03 23:09:11 YESSS
+debug 2026/01/03 23:09:20 Now Confirming
+debug 2026/01/03 23:09:20 YESSS
+debug 2026/01/03 23:09:22 value passed:  true
+debug 2026/01/03 23:09:22 current value m.Running:  true
+debug 2026/01/03 23:09:22 
 
  entered startstopmsg update
-debug 2025/12/17 21:44:06 this shouldnt be printed
-debug 2025/12/17 21:44:07 
-{
-  "ActiveTaskId": 3,
-  "StatusQuote": "Session ended!!",
-  "Timer": {
-    "Label": "yo",
-    "Running": true,
-    "Interval": 1000000000,
-    "SessionTime": 0
-  },
-  "CurrentSession": {
-    "id": 37,
-    "start_time": "2025-12-17 21:44:06",
-    "end_time": {
-      "String": "",
-      "Valid": false
-    },
-    "task_id": 3
-  },
-  "Typing": false
-}
-debug 2025/12/17 21:44:07 value passed:  false
-debug 2025/12/17 21:44:07 current value m.Running:  true
-debug 2025/12/17 21:44:07 
+debug 2026/01/03 23:09:22 
+mrunning: true	msgrunning: true
+debug 2026/01/03 23:09:24 value passed:  false
+debug 2026/01/03 23:09:24 current value m.Running:  true
+debug 2026/01/03 23:09:24 
 
  entered startstopmsg update
-debug 2025/12/17 21:44:07 
+debug 2026/01/03 23:09:24 
 mrunning: false	msgrunning: false
-debug 2025/12/17 21:44:09 value passed:  true
-debug 2025/12/17 21:44:09 current value m.Running:  false
-debug 2025/12/17 21:44:09 
+debug 2026/01/03 23:12:50 Now Confirming
+debug 2026/01/03 23:12:50 No
+debug 2026/01/03 23:12:54 Now Confirming
+debug 2026/01/03 23:12:55 Now Confirming
+debug 2026/01/03 23:12:55 Now Confirming
+debug 2026/01/03 23:12:55 Now Confirming
+debug 2026/01/03 23:12:56 Now Confirming
+debug 2026/01/03 23:12:56 Now Confirming
+debug 2026/01/03 23:12:56 Now Confirming
+debug 2026/01/03 23:12:56 Now Confirming
+debug 2026/01/03 23:12:56 Now Confirming
+debug 2026/01/03 23:13:05 Now Confirming
+debug 2026/01/03 23:13:05 YESSS
+debug 2026/01/03 23:13:09 value passed:  true
+debug 2026/01/03 23:13:09 current value m.Running:  true
+debug 2026/01/03 23:13:09 
 
  entered startstopmsg update
-debug 2025/12/17 21:44:09 this shouldnt be printed
-debug 2025/12/17 21:44:10 
-{
-  "ActiveTaskId": 6,
-  "StatusQuote": "Session ended!!",
-  "Timer": {
-    "Label": "XXY",
-    "Running": true,
-    "Interval": 1000000000,
-    "SessionTime": 0
-  },
-  "CurrentSession": {
-    "id": 38,
-    "start_time": "2025-12-17 21:44:09",
-    "end_time": {
-      "String": "",
-      "Valid": false
-    },
-    "task_id": 6
-  },
-  "Typing": false
-}
-debug 2025/12/17 21:44:10 value passed:  false
-debug 2025/12/17 21:44:10 current value m.Running:  true
-debug 2025/12/17 21:44:10 
+debug 2026/01/03 23:13:09 
+mrunning: true	msgrunning: true
+debug 2026/01/03 23:13:10 value passed:  false
+debug 2026/01/03 23:13:10 current value m.Running:  true
+debug 2026/01/03 23:13:10 
 
  entered startstopmsg update
-debug 2025/12/17 21:44:10 
+debug 2026/01/03 23:13:10 
 mrunning: false	msgrunning: false
-debug 2025/12/21 06:00:21 what
-debug 2025/12/21 06:02:34 value passed:  true
-debug 2025/12/21 06:02:34 current value m.Running:  false
-debug 2025/12/21 06:02:34 
+debug 2026/01/03 23:17:15 value passed:  true
+debug 2026/01/03 23:17:15 current value m.Running:  true
+debug 2026/01/03 23:17:15 
 
  entered startstopmsg update
-debug 2025/12/21 06:02:34 this shouldnt be printed
-debug 2025/12/21 06:02:35 
-{
-  "ActiveTaskId": 15,
-  "StatusQuote": "Session ended!!",
-  "Timer": {
-    "Label": "JIG",
-    "Running": true,
-    "Interval": 1000000000,
-    "SessionTime": 0
-  },
-  "CurrentSession": {
-    "id": 39,
-    "start_time": "2025-12-21 06:02:34",
-    "end_time": {
-      "String": "",
-      "Valid": false
-    },
-    "task_id": 15
-  },
-  "Typing": false
-}
-debug 2025/12/21 06:02:35 value passed:  false
-debug 2025/12/21 06:02:35 current value m.Running:  true
-debug 2025/12/21 06:02:35 
+debug 2026/01/03 23:17:15 
+mrunning: true	msgrunning: true
+debug 2026/01/03 23:17:16 value passed:  false
+debug 2026/01/03 23:17:16 current value m.Running:  true
+debug 2026/01/03 23:17:16 
 
  entered startstopmsg update
-debug 2025/12/21 06:02:35 
+debug 2026/01/03 23:17:16 
 mrunning: false	msgrunning: false
-debug 2025/12/21 06:03:52 what
-debug 2025/12/21 06:11:33 what
-debug 2025/12/21 06:11:37 value passed:  true
-debug 2025/12/21 06:11:37 current value m.Running:  false
-debug 2025/12/21 06:11:37 
+debug 2026/01/03 23:17:22 value passed:  true
+debug 2026/01/03 23:17:22 current value m.Running:  true
+debug 2026/01/03 23:17:22 
 
  entered startstopmsg update
-debug 2025/12/21 06:11:37 this shouldnt be printed
-debug 2025/12/21 06:11:37 
-{
-  "ActiveTaskId": 2,
-  "StatusQuote": "Session ended!!",
-  "Timer": {
-    "Label": "XXX",
-    "Running": true,
-    "Interval": 1000000000,
-    "SessionTime": 0
-  },
-  "CurrentSession": {
-    "id": 40,
-    "start_time": "2025-12-21 06:11:37",
-    "end_time": {
-      "String": "",
-      "Valid": false
-    },
-    "task_id": 2
-  },
-  "Typing": false
-}
-debug 2025/12/21 06:11:37 value passed:  false
-debug 2025/12/21 06:11:37 current value m.Running:  true
-debug 2025/12/21 06:11:37 
+debug 2026/01/03 23:17:22 
+mrunning: true	msgrunning: true
+debug 2026/01/03 23:17:25 value passed:  false
+debug 2026/01/03 23:17:25 current value m.Running:  true
+debug 2026/01/03 23:17:25 
 
  entered startstopmsg update
-debug 2025/12/21 06:11:37 
+debug 2026/01/03 23:17:25 
 mrunning: false	msgrunning: false
-debug 2025/12/21 06:11:54 what
-debug 2025/12/21 06:12:05 value passed:  true
-debug 2025/12/21 06:12:05 current value m.Running:  false
-debug 2025/12/21 06:12:05 
+debug 2026/01/03 23:17:28 value passed:  true
+debug 2026/01/03 23:17:28 current value m.Running:  true
+debug 2026/01/03 23:17:28 
 
  entered startstopmsg update
-debug 2025/12/21 06:12:05 this shouldnt be printed
-debug 2025/12/21 06:12:05 
-{
-  "ActiveTaskId": 8,
-  "StatusQuote": "Session ended!!",
-  "Timer": {
-    "Label": "CCC",
-    "Running": true,
-    "Interval": 1000000000,
-    "SessionTime": 0
-  },
-  "CurrentSession": {
-    "id": 41,
-    "start_time": "2025-12-21 06:12:05",
-    "end_time": {
-      "String": "",
-      "Valid": false
-    },
-    "task_id": 8
-  },
-  "Typing": false
-}
-debug 2025/12/21 06:12:05 value passed:  false
-debug 2025/12/21 06:12:05 current value m.Running:  true
-debug 2025/12/21 06:12:05 
+debug 2026/01/03 23:17:28 
+mrunning: true	msgrunning: true
+debug 2026/01/03 23:17:28 value passed:  false
+debug 2026/01/03 23:17:28 current value m.Running:  true
+debug 2026/01/03 23:17:28 
 
  entered startstopmsg update
-debug 2025/12/21 06:12:05 
+debug 2026/01/03 23:17:28 
 mrunning: false	msgrunning: false
-debug 2025/12/21 06:12:25 gowhat
-debug 2025/12/21 06:12:33 value passed:  true
-debug 2025/12/21 06:12:33 current value m.Running:  false
-debug 2025/12/21 06:12:33 
+debug 2026/01/03 23:34:16 value passed:  true
+debug 2026/01/03 23:34:16 current value m.Running:  true
+debug 2026/01/03 23:34:16 
 
  entered startstopmsg update
-debug 2025/12/21 06:12:33 this shouldnt be printed
-debug 2025/12/21 06:12:33 
-{
-  "ActiveTaskId": 6,
-  "StatusQuote": "Session ended!!",
-  "Timer": {
-    "Label": "XXY",
-    "Running": true,
-    "Interval": 1000000000,
-    "SessionTime": 0
-  },
-  "CurrentSession": {
-    "id": 42,
-    "start_time": "2025-12-21 06:12:33",
-    "end_time": {
-      "String": "",
-      "Valid": false
-    },
-    "task_id": 6
-  },
-  "Typing": false
-}
-debug 2025/12/21 06:12:33 value passed:  false
-debug 2025/12/21 06:12:33 current value m.Running:  true
-debug 2025/12/21 06:12:33 
+debug 2026/01/03 23:34:16 
+mrunning: true	msgrunning: true
+debug 2026/01/03 23:34:17 value passed:  false
+debug 2026/01/03 23:34:17 current value m.Running:  true
+debug 2026/01/03 23:34:17 
 
  entered startstopmsg update
-debug 2025/12/21 06:12:33 
+debug 2026/01/03 23:34:17 
 mrunning: false	msgrunning: false
-debug 2025/12/21 06:12:42 gowhat
-debug 2025/12/21 06:12:59 gowhat
-debug 2025/12/21 06:13:00 value passed:  true
-debug 2025/12/21 06:13:00 current value m.Running:  false
-debug 2025/12/21 06:13:00 
+debug 2026/01/03 23:34:27 value passed:  true
+debug 2026/01/03 23:34:27 current value m.Running:  true
+debug 2026/01/03 23:34:27 
 
  entered startstopmsg update
-debug 2025/12/21 06:13:00 this shouldnt be printed
-debug 2025/12/21 06:13:01 
-{
-  "ActiveTaskId": 3,
-  "StatusQuote": "Session ended!!",
-  "Timer": {
-    "Label": "yo",
-    "Running": true,
-    "Interval": 1000000000,
-    "SessionTime": 0
-  },
-  "CurrentSession": {
-    "id": 43,
-    "start_time": "2025-12-21 06:13:00",
-    "end_time": {
-      "String": "",
-      "Valid": false
-    },
-    "task_id": 3
-  },
-  "Typing": false
-}
-debug 2025/12/21 06:13:01 value passed:  false
-debug 2025/12/21 06:13:01 current value m.Running:  true
-debug 2025/12/21 06:13:01 
+debug 2026/01/03 23:34:27 
+mrunning: true	msgrunning: true
+debug 2026/01/03 23:34:28 value passed:  false
+debug 2026/01/03 23:34:28 current value m.Running:  true
+debug 2026/01/03 23:34:28 
 
  entered startstopmsg update
-debug 2025/12/21 06:13:01 
+debug 2026/01/03 23:34:28 
 mrunning: false	msgrunning: false
-debug 2025/12/21 06:16:48 gowhat
-debug 2025/12/21 06:18:12 gowhat
-debug 2025/12/21 06:18:49 gowhat
-debug 2025/12/21 06:21:56 gowhat
-debug 2025/12/21 06:23:22 gowhat
-debug 2025/12/21 06:27:03 gowhat
-debug 2025/12/21 06:27:15 value passed:  true
-debug 2025/12/21 06:27:15 current value m.Running:  false
-debug 2025/12/21 06:27:15 
+debug 2026/01/03 23:34:29 value passed:  true
+debug 2026/01/03 23:34:29 current value m.Running:  true
+debug 2026/01/03 23:34:29 
 
  entered startstopmsg update
-debug 2025/12/21 06:27:15 this shouldnt be printed
-debug 2025/12/21 06:27:15 
-{
-  "ActiveTaskId": 2,
-  "StatusQuote": "Session ended!!",
-  "Timer": {
-    "Label": "XXX",
-    "Running": true,
-    "Interval": 1000000000,
-    "SessionTime": 0
-  },
-  "CurrentSession": {
-    "id": 44,
-    "start_time": "2025-12-21 06:27:15",
-    "end_time": {
-      "String": "",
-      "Valid": false
-    },
-    "task_id": 2
-  },
-  "Typing": false
-}
-debug 2025/12/21 06:27:15 value passed:  false
-debug 2025/12/21 06:27:15 current value m.Running:  true
-debug 2025/12/21 06:27:15 
+debug 2026/01/03 23:34:29 
+mrunning: true	msgrunning: true
+debug 2026/01/03 23:34:30 value passed:  false
+debug 2026/01/03 23:34:30 current value m.Running:  true
+debug 2026/01/03 23:34:30 
 
  entered startstopmsg update
-debug 2025/12/21 06:27:15 
+debug 2026/01/03 23:34:30 
 mrunning: false	msgrunning: false
-debug 2025/12/21 06:27:17 value passed:  true
-debug 2025/12/21 06:27:17 current value m.Running:  false
-debug 2025/12/21 06:27:17 
+debug 2026/01/03 23:34:30 value passed:  true
+debug 2026/01/03 23:34:30 current value m.Running:  true
+debug 2026/01/03 23:34:30 
 
  entered startstopmsg update
-debug 2025/12/21 06:27:17 this shouldnt be printed
-debug 2025/12/21 06:27:17 
-{
-  "ActiveTaskId": 1,
-  "StatusQuote": "Session ended!!",
-  "Timer": {
-    "Label": "this is a task",
-    "Running": true,
-    "Interval": 1000000000,
-    "SessionTime": 0
-  },
-  "CurrentSession": {
-    "id": 45,
-    "start_time": "2025-12-21 06:27:17",
-    "end_time": {
-      "String": "",
-      "Valid": false
-    },
-    "task_id": 1
-  },
-  "Typing": false
-}
-debug 2025/12/21 06:27:17 value passed:  false
-debug 2025/12/21 06:27:17 current value m.Running:  true
-debug 2025/12/21 06:27:17 
+debug 2026/01/03 23:34:30 
+mrunning: true	msgrunning: true
+debug 2026/01/03 23:34:31 value passed:  false
+debug 2026/01/03 23:34:31 current value m.Running:  true
+debug 2026/01/03 23:34:31 
 
  entered startstopmsg update
-debug 2025/12/21 06:27:17 
+debug 2026/01/03 23:34:31 
 mrunning: false	msgrunning: false
-debug 2025/12/21 06:27:20 value passed:  true
-debug 2025/12/21 06:27:20 current value m.Running:  false
-debug 2025/12/21 06:27:20 
+debug 2026/01/03 23:43:31 value passed:  true
+debug 2026/01/03 23:43:31 current value m.Running:  true
+debug 2026/01/03 23:43:31 
 
  entered startstopmsg update
-debug 2025/12/21 06:27:20 this shouldnt be printed
-debug 2025/12/21 06:27:21 
-{
-  "ActiveTaskId": 7,
-  "StatusQuote": "Session ended!!",
-  "Timer": {
-    "Label": "what",
-    "Running": true,
-    "Interval": 1000000000,
-    "SessionTime": 0
-  },
-  "CurrentSession": {
-    "id": 46,
-    "start_time": "2025-12-21 06:27:20",
-    "end_time": {
-      "String": "",
-      "Valid": false
-    },
-    "task_id": 7
-  },
-  "Typing": false
-}
-debug 2025/12/21 06:27:21 value passed:  false
-debug 2025/12/21 06:27:21 current value m.Running:  true
-debug 2025/12/21 06:27:21 
+debug 2026/01/03 23:43:31 
+mrunning: true	msgrunning: true
+debug 2026/01/03 23:43:31 value passed:  false
+debug 2026/01/03 23:43:31 current value m.Running:  true
+debug 2026/01/03 23:43:31 
 
  entered startstopmsg update
-debug 2025/12/21 06:27:21 
+debug 2026/01/03 23:43:31 
 mrunning: false	msgrunning: false
-debug 2025/12/21 06:27:25 value passed:  true
-debug 2025/12/21 06:27:25 current value m.Running:  false
-debug 2025/12/21 06:27:25 
-
- entered startstopmsg update
-debug 2025/12/21 06:27:25 this shouldnt be printed
-debug 2025/12/21 06:27:26 
-{
-  "ActiveTaskId": 7,
-  "StatusQuote": "Session ended!!",
-  "Timer": {
-    "Label": "what",
-    "Running": true,
-    "Interval": 1000000000,
-    "SessionTime": 0
-  },
-  "CurrentSession": {
-    "id": 47,
-    "start_time": "2025-12-21 06:27:25",
-    "end_time": {
-      "String": "",
-      "Valid": false
-    },
-    "task_id": 7
-  },
-  "Typing": false
-}
-debug 2025/12/21 06:27:26 value passed:  false
-debug 2025/12/21 06:27:26 current value m.Running:  true
-debug 2025/12/21 06:27:26 
-
- entered startstopmsg update
-debug 2025/12/21 06:27:26 
-mrunning: false	msgrunning: false
-debug 2025/12/21 06:28:14 gowhat
-debug 2025/12/26 04:41:29 gowhat
-debug 2025/12/26 04:41:44 value passed:  true
-debug 2025/12/26 04:41:44 current value m.Running:  false
-debug 2025/12/26 04:41:44 
-
- entered startstopmsg update
-debug 2025/12/26 04:41:44 this shouldnt be printed
-debug 2025/12/26 04:41:51 
-{db:0xc0000142a0 tasks:map[1:{ID:1 Name:this is a task ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 2:{ID:2 Name:XXX ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 3:{ID:3 Name:yo ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 4:{ID:4 Name:this ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 5:{ID:5 Name:XX ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 6:{ID:6 Name:XXY ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 7:{ID:7 Name:what ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 8:{ID:8 Name:CCC ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 9:{ID:9 Name: ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 10:{ID:10 Name:FAAH ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 11:{ID:11 Name:YO ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 12:{ID:12 Name:CAH ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 13:{ID:13 Name:YOU ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 14:{ID:14 Name:ja ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 15:{ID:15 Name:JIG ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 16:{ID:16 Name:tits ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 17:{ID:17 Name:HHH ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 18:{ID:18 Name:PP ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 19:{ID:19 Name:wha ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 20:{ID:20 Name:PPP ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 21:{ID:21 Name:DLS ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 22:{ID:22 Name:JL ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 23:{ID:23 Name:PPPPPP ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 24:{ID:24 Name:FSJK ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 25:{ID:25 Name:PPPPPPPPP ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 26:{ID:26 Name:WHATTTTTT ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 27:{ID:27 Name:SJDKL ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 28:{ID:28 Name:JSJDS ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 29:{ID:29 Name:bruhh ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 30:{ID:30 Name:mm ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}}] ActiveTaskId:16 StatusQuote:Session ended!! help:this is help string tabs:{ActiveTabIndex:15 Tasks:[{ID:1 Name:this is a task ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:2 Name:XXX ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:3 Name:yo ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:4 Name:this ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:5 Name:XX ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:6 Name:XXY ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:7 Name:what ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:8 Name:CCC ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:9 Name: ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:10 Name:FAAH ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:11 Name:YO ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:12 Name:CAH ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:13 Name:YOU ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:14 Name:ja ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:15 Name:JIG ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:16 Name:tits ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:17 Name:HHH ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:18 Name:PP ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:19 Name:wha ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:20 Name:PPP ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:21 Name:DLS ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:22 Name:JL ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:23 Name:PPPPPP ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:24 Name:FSJK ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:25 Name:PPPPPPPPP ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:26 Name:WHATTTTTT ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:27 Name:SJDKL ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:28 Name:JSJDS ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:29 Name:bruhh ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:30 Name:mm ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}}]} Timer:{Label:tits Running:true id:2 tag:0 Interval:1s SessionTime:0s} quitting:false CurrentSession:0xc000088000 textInput:{Err:<nil> Prompt:>  Placeholder:Enter task name EchoMode:0 EchoCharacter:42 Cursor:{BlinkSpeed:530000000 Style:{r:<nil> props:0 value: attrs:0 fgColor:<nil> bgColor:<nil> width:0 height:0 alignHorizontal:0 alignVertical:0 paddingTop:0 paddingRight:0 paddingBottom:0 paddingLeft:0 marginTop:0 marginRight:0 marginBottom:0 marginLeft:0 marginBgColor:<nil> borderStyle:{Top: Bottom: Left: Right: TopLeft: TopRight: BottomLeft: BottomRight: MiddleLeft: MiddleRight: Middle: MiddleTop: MiddleBottom:} borderTopFgColor:<nil> borderRightFgColor:<nil> borderBottomFgColor:<nil> borderLeftFgColor:<nil> borderTopBgColor:<nil> borderRightBgColor:<nil> borderBottomBgColor:<nil> borderLeftBgColor:<nil> maxWidth:0 maxHeight:0 tabWidth:0 transform:<nil>} TextStyle:{r:<nil> props:0 value: attrs:0 fgColor:<nil> bgColor:<nil> width:0 height:0 alignHorizontal:0 alignVertical:0 paddingTop:0 paddingRight:0 paddingBottom:0 paddingLeft:0 marginTop:0 marginRight:0 marginBottom:0 marginLeft:0 marginBgColor:<nil> borderStyle:{Top: Bottom: Left: Right: TopLeft: TopRight: BottomLeft: BottomRight: MiddleLeft: MiddleRight: Middle: MiddleTop: MiddleBottom:} borderTopFgColor:<nil> borderRightFgColor:<nil> borderBottomFgColor:<nil> borderLeftFgColor:<nil> borderTopBgColor:<nil> borderRightBgColor:<nil> borderBottomBgColor:<nil> borderLeftBgColor:<nil> maxWidth:0 maxHeight:0 tabWidth:0 transform:<nil>} char: id:0 focus:false Blink:true blinkCtx:0xc0000100a8 blinkTag:0 mode:0} BlinkSpeed:0 PromptStyle:{r:<nil> props:0 value: attrs:0 fgColor:<nil> bgColor:<nil> width:0 height:0 alignHorizontal:0 alignVertical:0 paddingTop:0 paddingRight:0 paddingBottom:0 paddingLeft:0 marginTop:0 marginRight:0 marginBottom:0 marginLeft:0 marginBgColor:<nil> borderStyle:{Top: Bottom: Left: Right: TopLeft: TopRight: BottomLeft: BottomRight: MiddleLeft: MiddleRight: Middle: MiddleTop: MiddleBottom:} borderTopFgColor:<nil> borderRightFgColor:<nil> borderBottomFgColor:<nil> borderLeftFgColor:<nil> borderTopBgColor:<nil> borderRightBgColor:<nil> borderBottomBgColor:<nil> borderLeftBgColor:<nil> maxWidth:0 maxHeight:0 tabWidth:0 transform:<nil>} TextStyle:{r:<nil> props:0 value: attrs:0 fgColor:<nil> bgColor:<nil> width:0 height:0 alignHorizontal:0 alignVertical:0 paddingTop:0 paddingRight:0 paddingBottom:0 paddingLeft:0 marginTop:0 marginRight:0 marginBottom:0 marginLeft:0 marginBgColor:<nil> borderStyle:{Top: Bottom: Left: Right: TopLeft: TopRight: BottomLeft: BottomRight: MiddleLeft: MiddleRight: Middle: MiddleTop: MiddleBottom:} borderTopFgColor:<nil> borderRightFgColor:<nil> borderBottomFgColor:<nil> borderLeftFgColor:<nil> borderTopBgColor:<nil> borderRightBgColor:<nil> borderBottomBgColor:<nil> borderLeftBgColor:<nil> maxWidth:0 maxHeight:0 tabWidth:0 transform:<nil>} PlaceholderStyle:{r:0x9318a0 props:1024 value: attrs:0 fgColor:240 bgColor:<nil> width:0 height:0 alignHorizontal:0 alignVertical:0 paddingTop:0 paddingRight:0 paddingBottom:0 paddingLeft:0 marginTop:0 marginRight:0 marginBottom:0 marginLeft:0 marginBgColor:<nil> borderStyle:{Top: Bottom: Left: Right: TopLeft: TopRight: BottomLeft: BottomRight: MiddleLeft: MiddleRight: Middle: MiddleTop: MiddleBottom:} borderTopFgColor:<nil> borderRightFgColor:<nil> borderBottomFgColor:<nil> borderLeftFgColor:<nil> borderTopBgColor:<nil> borderRightBgColor:<nil> borderBottomBgColor:<nil> borderLeftBgColor:<nil> maxWidth:0 maxHeight:0 tabWidth:0 transform:<nil>} CompletionStyle:{r:0x9318a0 props:1024 value: attrs:0 fgColor:240 bgColor:<nil> width:0 height:0 alignHorizontal:0 alignVertical:0 paddingTop:0 paddingRight:0 paddingBottom:0 paddingLeft:0 marginTop:0 marginRight:0 marginBottom:0 marginLeft:0 marginBgColor:<nil> borderStyle:{Top: Bottom: Left: Right: TopLeft: TopRight: BottomLeft: BottomRight: MiddleLeft: MiddleRight: Middle: MiddleTop: MiddleBottom:} borderTopFgColor:<nil> borderRightFgColor:<nil> borderBottomFgColor:<nil> borderLeftFgColor:<nil> borderTopBgColor:<nil> borderRightBgColor:<nil> borderBottomBgColor:<nil> borderLeftBgColor:<nil> maxWidth:0 maxHeight:0 tabWidth:0 transform:<nil>} CursorStyle:{r:<nil> props:0 value: attrs:0 fgColor:<nil> bgColor:<nil> width:0 height:0 alignHorizontal:0 alignVertical:0 paddingTop:0 paddingRight:0 paddingBottom:0 paddingLeft:0 marginTop:0 marginRight:0 marginBottom:0 marginLeft:0 marginBgColor:<nil> borderStyle:{Top: Bottom: Left: Right: TopLeft: TopRight: BottomLeft: BottomRight: MiddleLeft: MiddleRight: Middle: MiddleTop: MiddleBottom:} borderTopFgColor:<nil> borderRightFgColor:<nil> borderBottomFgColor:<nil> borderLeftFgColor:<nil> borderTopBgColor:<nil> borderRightBgColor:<nil> borderBottomBgColor:<nil> borderLeftBgColor:<nil> maxWidth:0 maxHeight:0 tabWidth:0 transform:<nil>} CharLimit:20 Width:20 KeyMap:{CharacterForward:{keys:[right ctrl+f] help:{Key: Desc:} disabled:false} CharacterBackward:{keys:[left ctrl+b] help:{Key: Desc:} disabled:false} WordForward:{keys:[alt+right ctrl+right alt+f] help:{Key: Desc:} disabled:false} WordBackward:{keys:[alt+left ctrl+left alt+b] help:{Key: Desc:} disabled:false} DeleteWordBackward:{keys:[alt+backspace ctrl+w] help:{Key: Desc:} disabled:false} DeleteWordForward:{keys:[alt+delete alt+d] help:{Key: Desc:} disabled:false} DeleteAfterCursor:{keys:[ctrl+k] help:{Key: Desc:} disabled:false} DeleteBeforeCursor:{keys:[ctrl+u] help:{Key: Desc:} disabled:false} DeleteCharacterBackward:{keys:[backspace ctrl+h] help:{Key: Desc:} disabled:false} DeleteCharacterForward:{keys:[delete ctrl+d] help:{Key: Desc:} disabled:false} LineStart:{keys:[home ctrl+a] help:{Key: Desc:} disabled:false} LineEnd:{keys:[end ctrl+e] help:{Key: Desc:} disabled:false} Paste:{keys:[ctrl+v] help:{Key: Desc:} disabled:false} AcceptSuggestion:{keys:[tab] help:{Key: Desc:} disabled:false} NextSuggestion:{keys:[down ctrl+n] help:{Key: Desc:} disabled:false} PrevSuggestion:{keys:[up ctrl+p] help:{Key: Desc:} disabled:false}} value:[] focus:false pos:0 offset:0 offsetRight:0 Validate:<nil> rsan:<nil> ShowSuggestions:false suggestions:[] matchedSuggestions:[] currentSuggestionIndex:0} keymap:{StartStopTimer:{keys:[  p] help:{Key:space/enter Desc:start/stop timer} disabled:false} Exit:{keys:[q ctrl+c] help:{Key:q Desc:quit} disabled:false} GoRight:{keys:[right l] help:{Key:→/l Desc:next} disabled:false} GoLeft:{keys:[left h] help:{Key:←/h Desc:prev} disabled:false} DeleteTask:{keys:[x] help:{Key:x Desc:delete task} disabled:false} CreateTask:{keys:[n] help:{Key:n Desc:new task} disabled:false} ResetTimer:{keys:[r] help:{Key:r Desc:reset timer} disabled:false}} state:1}
-debug 2025/12/26 04:41:51 value passed:  false
-debug 2025/12/26 04:41:51 current value m.Running:  true
-debug 2025/12/26 04:41:51 
-
- entered startstopmsg update
-debug 2025/12/26 04:41:51 
-mrunning: false	msgrunning: false
-debug 2025/12/26 04:41:54 value passed:  true
-debug 2025/12/26 04:41:54 current value m.Running:  false
-debug 2025/12/26 04:41:54 
-
- entered startstopmsg update
-debug 2025/12/26 04:41:54 this shouldnt be printed
-debug 2025/12/26 04:42:02 
-{db:0xc0000142a0 tasks:map[1:{ID:1 Name:this is a task ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 2:{ID:2 Name:XXX ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 3:{ID:3 Name:yo ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 4:{ID:4 Name:this ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 5:{ID:5 Name:XX ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 6:{ID:6 Name:XXY ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 7:{ID:7 Name:what ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 8:{ID:8 Name:CCC ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 9:{ID:9 Name: ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 10:{ID:10 Name:FAAH ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 11:{ID:11 Name:YO ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 12:{ID:12 Name:CAH ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 13:{ID:13 Name:YOU ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 14:{ID:14 Name:ja ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 15:{ID:15 Name:JIG ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 16:{ID:16 Name:tits ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 17:{ID:17 Name:HHH ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 18:{ID:18 Name:PP ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 19:{ID:19 Name:wha ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 20:{ID:20 Name:PPP ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 21:{ID:21 Name:DLS ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 22:{ID:22 Name:JL ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 23:{ID:23 Name:PPPPPP ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 24:{ID:24 Name:FSJK ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 25:{ID:25 Name:PPPPPPPPP ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 26:{ID:26 Name:WHATTTTTT ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 27:{ID:27 Name:SJDKL ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 28:{ID:28 Name:JSJDS ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 29:{ID:29 Name:bruhh ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} 30:{ID:30 Name:mm ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}}] ActiveTaskId:14 StatusQuote:Session ended!! help:Please end your session before quitting the app. Press Spacebar/enter to pause the timer tabs:{ActiveTabIndex:13 Tasks:[{ID:1 Name:this is a task ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:2 Name:XXX ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:3 Name:yo ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:4 Name:this ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:5 Name:XX ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:6 Name:XXY ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:7 Name:what ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:8 Name:CCC ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:9 Name: ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:10 Name:FAAH ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:11 Name:YO ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:12 Name:CAH ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:13 Name:YOU ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:14 Name:ja ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:15 Name:JIG ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:16 Name:tits ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:17 Name:HHH ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:18 Name:PP ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:19 Name:wha ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:20 Name:PPP ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:21 Name:DLS ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:22 Name:JL ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:23 Name:PPPPPP ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:24 Name:FSJK ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:25 Name:PPPPPPPPP ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:26 Name:WHATTTTTT ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:27 Name:SJDKL ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:28 Name:JSJDS ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:29 Name:bruhh ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}} {ID:30 Name:mm ColorHex:{String:what Valid:true} Completed:{Bool:false Valid:true} DailyTarget:{Int64:3600 Valid:true}}]} Timer:{Label:ja Running:true id:3 tag:0 Interval:1s SessionTime:0s} quitting:false CurrentSession:0xc00054a000 textInput:{Err:<nil> Prompt:>  Placeholder:Enter task name EchoMode:0 EchoCharacter:42 Cursor:{BlinkSpeed:530000000 Style:{r:<nil> props:0 value: attrs:0 fgColor:<nil> bgColor:<nil> width:0 height:0 alignHorizontal:0 alignVertical:0 paddingTop:0 paddingRight:0 paddingBottom:0 paddingLeft:0 marginTop:0 marginRight:0 marginBottom:0 marginLeft:0 marginBgColor:<nil> borderStyle:{Top: Bottom: Left: Right: TopLeft: TopRight: BottomLeft: BottomRight: MiddleLeft: MiddleRight: Middle: MiddleTop: MiddleBottom:} borderTopFgColor:<nil> borderRightFgColor:<nil> borderBottomFgColor:<nil> borderLeftFgColor:<nil> borderTopBgColor:<nil> borderRightBgColor:<nil> borderBottomBgColor:<nil> borderLeftBgColor:<nil> maxWidth:0 maxHeight:0 tabWidth:0 transform:<nil>} TextStyle:{r:<nil> props:0 value: attrs:0 fgColor:<nil> bgColor:<nil> width:0 height:0 alignHorizontal:0 alignVertical:0 paddingTop:0 paddingRight:0 paddingBottom:0 paddingLeft:0 marginTop:0 marginRight:0 marginBottom:0 marginLeft:0 marginBgColor:<nil> borderStyle:{Top: Bottom: Left: Right: TopLeft: TopRight: BottomLeft: BottomRight: MiddleLeft: MiddleRight: Middle: MiddleTop: MiddleBottom:} borderTopFgColor:<nil> borderRightFgColor:<nil> borderBottomFgColor:<nil> borderLeftFgColor:<nil> borderTopBgColor:<nil> borderRightBgColor:<nil> borderBottomBgColor:<nil> borderLeftBgColor:<nil> maxWidth:0 maxHeight:0 tabWidth:0 transform:<nil>} char: id:0 focus:false Blink:true blinkCtx:0xc0000100a8 blinkTag:0 mode:0} BlinkSpeed:0 PromptStyle:{r:<nil> props:0 value: attrs:0 fgColor:<nil> bgColor:<nil> width:0 height:0 alignHorizontal:0 alignVertical:0 paddingTop:0 paddingRight:0 paddingBottom:0 paddingLeft:0 marginTop:0 marginRight:0 marginBottom:0 marginLeft:0 marginBgColor:<nil> borderStyle:{Top: Bottom: Left: Right: TopLeft: TopRight: BottomLeft: BottomRight: MiddleLeft: MiddleRight: Middle: MiddleTop: MiddleBottom:} borderTopFgColor:<nil> borderRightFgColor:<nil> borderBottomFgColor:<nil> borderLeftFgColor:<nil> borderTopBgColor:<nil> borderRightBgColor:<nil> borderBottomBgColor:<nil> borderLeftBgColor:<nil> maxWidth:0 maxHeight:0 tabWidth:0 transform:<nil>} TextStyle:{r:<nil> props:0 value: attrs:0 fgColor:<nil> bgColor:<nil> width:0 height:0 alignHorizontal:0 alignVertical:0 paddingTop:0 paddingRight:0 paddingBottom:0 paddingLeft:0 marginTop:0 marginRight:0 marginBottom:0 marginLeft:0 marginBgColor:<nil> borderStyle:{Top: Bottom: Left: Right: TopLeft: TopRight: BottomLeft: BottomRight: MiddleLeft: MiddleRight: Middle: MiddleTop: MiddleBottom:} borderTopFgColor:<nil> borderRightFgColor:<nil> borderBottomFgColor:<nil> borderLeftFgColor:<nil> borderTopBgColor:<nil> borderRightBgColor:<nil> borderBottomBgColor:<nil> borderLeftBgColor:<nil> maxWidth:0 maxHeight:0 tabWidth:0 transform:<nil>} PlaceholderStyle:{r:0x9318a0 props:1024 value: attrs:0 fgColor:240 bgColor:<nil> width:0 height:0 alignHorizontal:0 alignVertical:0 paddingTop:0 paddingRight:0 paddingBottom:0 paddingLeft:0 marginTop:0 marginRight:0 marginBottom:0 marginLeft:0 marginBgColor:<nil> borderStyle:{Top: Bottom: Left: Right: TopLeft: TopRight: BottomLeft: BottomRight: MiddleLeft: MiddleRight: Middle: MiddleTop: MiddleBottom:} borderTopFgColor:<nil> borderRightFgColor:<nil> borderBottomFgColor:<nil> borderLeftFgColor:<nil> borderTopBgColor:<nil> borderRightBgColor:<nil> borderBottomBgColor:<nil> borderLeftBgColor:<nil> maxWidth:0 maxHeight:0 tabWidth:0 transform:<nil>} CompletionStyle:{r:0x9318a0 props:1024 value: attrs:0 fgColor:240 bgColor:<nil> width:0 height:0 alignHorizontal:0 alignVertical:0 paddingTop:0 paddingRight:0 paddingBottom:0 paddingLeft:0 marginTop:0 marginRight:0 marginBottom:0 marginLeft:0 marginBgColor:<nil> borderStyle:{Top: Bottom: Left: Right: TopLeft: TopRight: BottomLeft: BottomRight: MiddleLeft: MiddleRight: Middle: MiddleTop: MiddleBottom:} borderTopFgColor:<nil> borderRightFgColor:<nil> borderBottomFgColor:<nil> borderLeftFgColor:<nil> borderTopBgColor:<nil> borderRightBgColor:<nil> borderBottomBgColor:<nil> borderLeftBgColor:<nil> maxWidth:0 maxHeight:0 tabWidth:0 transform:<nil>} CursorStyle:{r:<nil> props:0 value: attrs:0 fgColor:<nil> bgColor:<nil> width:0 height:0 alignHorizontal:0 alignVertical:0 paddingTop:0 paddingRight:0 paddingBottom:0 paddingLeft:0 marginTop:0 marginRight:0 marginBottom:0 marginLeft:0 marginBgColor:<nil> borderStyle:{Top: Bottom: Left: Right: TopLeft: TopRight: BottomLeft: BottomRight: MiddleLeft: MiddleRight: Middle: MiddleTop: MiddleBottom:} borderTopFgColor:<nil> borderRightFgColor:<nil> borderBottomFgColor:<nil> borderLeftFgColor:<nil> borderTopBgColor:<nil> borderRightBgColor:<nil> borderBottomBgColor:<nil> borderLeftBgColor:<nil> maxWidth:0 maxHeight:0 tabWidth:0 transform:<nil>} CharLimit:20 Width:20 KeyMap:{CharacterForward:{keys:[right ctrl+f] help:{Key: Desc:} disabled:false} CharacterBackward:{keys:[left ctrl+b] help:{Key: Desc:} disabled:false} WordForward:{keys:[alt+right ctrl+right alt+f] help:{Key: Desc:} disabled:false} WordBackward:{keys:[alt+left ctrl+left alt+b] help:{Key: Desc:} disabled:false} DeleteWordBackward:{keys:[alt+backspace ctrl+w] help:{Key: Desc:} disabled:false} DeleteWordForward:{keys:[alt+delete alt+d] help:{Key: Desc:} disabled:false} DeleteAfterCursor:{keys:[ctrl+k] help:{Key: Desc:} disabled:false} DeleteBeforeCursor:{keys:[ctrl+u] help:{Key: Desc:} disabled:false} DeleteCharacterBackward:{keys:[backspace ctrl+h] help:{Key: Desc:} disabled:false} DeleteCharacterForward:{keys:[delete ctrl+d] help:{Key: Desc:} disabled:false} LineStart:{keys:[home ctrl+a] help:{Key: Desc:} disabled:false} LineEnd:{keys:[end ctrl+e] help:{Key: Desc:} disabled:false} Paste:{keys:[ctrl+v] help:{Key: Desc:} disabled:false} AcceptSuggestion:{keys:[tab] help:{Key: Desc:} disabled:false} NextSuggestion:{keys:[down ctrl+n] help:{Key: Desc:} disabled:false} PrevSuggestion:{keys:[up ctrl+p] help:{Key: Desc:} disabled:false}} value:[] focus:false pos:0 offset:0 offsetRight:0 Validate:<nil> rsan:<nil> ShowSuggestions:false suggestions:[] matchedSuggestions:[] currentSuggestionIndex:0} keymap:{StartStopTimer:{keys:[  p] help:{Key:space/enter Desc:start/stop timer} disabled:false} Exit:{keys:[q ctrl+c] help:{Key:q Desc:quit} disabled:false} GoRight:{keys:[right l] help:{Key:→/l Desc:next} disabled:false} GoLeft:{keys:[left h] help:{Key:←/h Desc:prev} disabled:false} DeleteTask:{keys:[x] help:{Key:x Desc:delete task} disabled:false} CreateTask:{keys:[n] help:{Key:n Desc:new task} disabled:false} ResetTimer:{keys:[r] help:{Key:r Desc:reset timer} disabled:false}} state:1}
-debug 2025/12/26 04:42:02 value passed:  false
-debug 2025/12/26 04:42:02 current value m.Running:  true
-debug 2025/12/26 04:42:02 
-
- entered startstopmsg update
-debug 2025/12/26 04:42:02 
-mrunning: false	msgrunning: false
-debug 2025/12/26 04:46:23 gowhat
-debug 2025/12/26 04:55:12 gowhat
-debug 2025/12/26 04:57:39 gowhat
