@@ -15,6 +15,8 @@ type keymapConfig struct {
 	DeleteTask     []string `json:"delete_task"`
 	CreateTask     []string `json:"create_task"`
 	ResetTimer     []string `json:"reset_timer"`
+	Yes            []string `json:"yes"`
+	No             []string `json:"no"`
 }
 
 func GetConfig(path string) (keymap, error) {
@@ -36,6 +38,8 @@ func defaultKeymapConfig() keymapConfig {
 		CreateTask:     []string{"n"},
 		DeleteTask:     []string{"x"},
 		ResetTimer:     []string{"r"},
+		Yes:            []string{"y"},
+		No:             []string{"n"},
 	}
 }
 
@@ -69,5 +73,7 @@ func mapConfigToKeymap(cfg keymapConfig) keymap {
 			key.WithKeys(cfg.ResetTimer...),
 			key.WithHelp("r", "reset timer"),
 		),
+		Yes: key.NewBinding(key.WithKeys(cfg.Yes...)),
+		No:  key.NewBinding(key.WithKeys(cfg.No...)),
 	}
 }
