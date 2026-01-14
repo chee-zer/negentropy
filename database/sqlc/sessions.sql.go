@@ -36,13 +36,21 @@ func (q *Queries) EndSession(ctx context.Context, arg EndSessionParams) (Session
 
 const endSessionAsEntropy = `-- name: EndSessionAsEntropy :one
 UPDATE sessions
-SET end_time = ?
-where task_id = 0
+SET
+end_time = ?,
+task_id = 0
+
+WHERE task_id = ?
 RETURNING id, start_time, end_time, task_id
 `
 
-func (q *Queries) EndSessionAsEntropy(ctx context.Context, endTime sql.NullString) (Session, error) {
-	row := q.db.QueryRowContext(ctx, endSessionAsEntropy, endTime)
+type EndSessionAsEntropyParams struct {
+	EndTime sql.NullString `json:"end_time"`
+	TaskID  int64          `json:"task_id"`
+}
+
+func (q *Queries) EndSessionAsEntropy(ctx context.Context, arg EndSessionAsEntropyParams) (Session, error) {
+	row := q.db.QueryRowContext(ctx, endSessionAsEntropy, arg.EndTime, arg.TaskID)
 	var i Session
 	err := row.Scan(
 		&i.ID,

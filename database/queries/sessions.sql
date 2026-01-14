@@ -11,8 +11,11 @@ RETURNING *;
 
 -- name: EndSessionAsEntropy :one
 UPDATE sessions
-SET end_time = ?
-where task_id = 0
+SET
+end_time = ?,
+task_id = 0
+
+WHERE task_id = ?
 RETURNING *;
 
 -- name: GetDailyTaskDurations :many
