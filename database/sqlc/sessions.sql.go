@@ -11,7 +11,7 @@ import (
 )
 
 const endSession = `-- name: EndSession :one
-UPDATE sessions 
+UPDATE sessions
 SET end_time = ?
 WHERE task_id = ?
 RETURNING id, start_time, end_time, task_id
@@ -34,6 +34,25 @@ func (q *Queries) EndSession(ctx context.Context, arg EndSessionParams) (Session
 	return i, err
 }
 
+const endSessionAsEntropy = `-- name: EndSessionAsEntropy :one
+UPDATE sessions
+SET end_time = ?
+where task_id = 0
+RETURNING id, start_time, end_time, task_id
+`
+
+func (q *Queries) EndSessionAsEntropy(ctx context.Context, endTime sql.NullString) (Session, error) {
+	row := q.db.QueryRowContext(ctx, endSessionAsEntropy, endTime)
+	var i Session
+	err := row.Scan(
+		&i.ID,
+		&i.StartTime,
+		&i.EndTime,
+		&i.TaskID,
+	)
+	return i, err
+}
+
 const getDailyTaskDurations = `-- name: GetDailyTaskDurations :many
 SELECT task_id, SUM(duration_seconds) as total_seconds
 FROM (
@@ -41,28 +60,28 @@ FROM (
     -- also this is for anyday, not just today. will make wrappers for this query inside app instead.
     -- '?' arg is the queried date
     -- 1. sessions spanning single day, day x
-    SELECT s.task_id, 
+    SELECT s.task_id,
     strftime('%s', s.end_time) - strftime('%s', s.start_time) AS duration_seconds
     FROM sessions AS s
-    WHERE s.start_time >= ?1 
+    WHERE s.start_time >= ?1
     AND s.end_time < strftime('%s', ?1, '+1 day', 'start of day')
     UNION ALL
     -- 2. sessions spanning two days, started on day x (not accounting for sessions spanning more than 2 days)
-    SELECT s.task_id, 
+    SELECT s.task_id,
     strftime('%s', ?1, '+1 day', 'start of day') - strftime('%s', start_time) AS duration_seconds
     FROM sessions AS s
-    WHERE date(s.start_time) = date(?1) 
+    WHERE date(s.start_time) = date(?1)
     AND date(s.end_time) = date(?1, '+1 day')
     OR s.end_time IS NULL
     UNION ALL
 
     --3. sessions spanning two days, ending on day x
-    SELECT s.task_id, 
+    SELECT s.task_id,
     strftime('%s', s.end_time) - strftime('%s', ?1, 'start of day') AS duration_seconds
     FROM sessions AS s
-    WHERE date(s.start_time) = date(?1, '-1 day') 
+    WHERE date(s.start_time) = date(?1, '-1 day')
     AND date(s.end_time) = date(?1)
-) AS daily_sessions
+) AS daily_sessions -- https://github.com/sqlc-dev/sqlc/issues/3963
 GROUP BY task_id
 `
 
