@@ -196,8 +196,15 @@ func (m model) StopSession() model {
 }
 
 func (m model) ResetSession() model {
+	taskID := m.ActiveTaskId
+	endTime := time.Now().Format("2006-01-02 15:04:0")
+	params := db.EndSessionAsEntropyParams{
+		EndTime: sql.NullString{String: endTime, Valid: true},
+		TaskID:  taskID,
+	}
+	m.db.EndSessionAsEntropy(context.Background(), params)
+	m.state = TimerNotRunning
 	return m
-
 }
 
 func (m model) updateTimerNotRunning(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
@@ -235,6 +242,7 @@ func (m model) updateTimerNotRunning(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
 		return m, cmd
 	case key.Matches(msg, m.keymap.DeleteTask):
 		m.StatusQuote = "Delete task? y/n"
+		m.pendingAction = deleteTask
 		m.state = Confirming
 		return m, nil
 	}
@@ -249,6 +257,11 @@ func (m model) updateTimerRunning(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
 	case key.Matches(msg, m.keymap.StartStopTimer):
 		m.StatusQuote = "Session ended!!"
 		return m.StopSession(), m.Timer.StopCmd()
+	case key.Matches(msg, m.keymap.ResetTimer):
+		m.StatusQuote = "Are you sure you want to reset this session? Entropy will be added."
+		m.state = Confirming
+		m.pendingAction = resetTimer
+		return m, nil
 	}
 	if len(m.tasks) == 0 {
 		m = m.NoTaskView()
@@ -322,6 +335,8 @@ func (m model) updateConfirming(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
 			m.state = TimerNotRunning
 			return m, m.tabs.DeleteSelectedTaskCmd()
 		case resetTimer:
+			m = m.ResetSession()
+			return m, nil
 
 		}
 	}

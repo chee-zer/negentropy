@@ -186,3 +186,31 @@ debug 2026/01/03 23:43:31
  entered startstopmsg update
 debug 2026/01/03 23:43:31 
 mrunning: false	msgrunning: false
+debug 2026/01/16 19:40:13 value passed:  true
+debug 2026/01/16 19:40:13 current value m.Running:  true
+debug 2026/01/16 19:40:13 
+
+ entered startstopmsg update
+debug 2026/01/16 19:40:13 
+mrunning: true	msgrunning: true
+debug 2026/01/16 19:43:27 value passed:  true
+debug 2026/01/16 19:43:27 current value m.Running:  true
+debug 2026/01/16 19:43:27 
+
+ entered startstopmsg update
+debug 2026/01/16 19:43:27 
+mrunning: true	msgrunning: true
+debug 2026/01/16 19:43:28 value passed:  false
+debug 2026/01/16 19:43:28 current value m.Running:  true
+debug 2026/01/16 19:43:28 
+
+ entered startstopmsg update
+debug 2026/01/16 19:43:28 
+mrunning: false	msgrunning: false
+debug 2026/01/16 19:43:33 value passed:  true
+debug 2026/01/16 19:43:33 current value m.Running:  true
+debug 2026/01/16 19:43:33 
+
+ entered startstopmsg update
+debug 2026/01/16 19:43:33 
+mrunning: true	msgrunning: true
