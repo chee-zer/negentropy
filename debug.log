@@ -214,3 +214,220 @@ debug 2026/01/16 19:43:33
  entered startstopmsg update
 debug 2026/01/16 19:43:33 
 mrunning: true	msgrunning: true
+debug 2026/01/17 08:30:18 value passed:  true
+debug 2026/01/17 08:30:18 current value m.Running:  true
+debug 2026/01/17 08:30:18 
+
+ entered startstopmsg update
+debug 2026/01/17 08:30:18 
+mrunning: true	msgrunning: true
+debug 2026/01/17 08:30:39 value passed:  false
+debug 2026/01/17 08:30:39 current value m.Running:  true
+debug 2026/01/17 08:30:39 
+
+ entered startstopmsg update
+debug 2026/01/17 08:30:39 
+mrunning: false	msgrunning: false
+debug 2026/01/17 08:30:41 value passed:  true
+debug 2026/01/17 08:30:41 current value m.Running:  true
+debug 2026/01/17 08:30:41 
+
+ entered startstopmsg update
+debug 2026/01/17 08:30:41 
+mrunning: true	msgrunning: true
+debug 2026/01/17 08:30:44 value passed:  false
+debug 2026/01/17 08:30:44 current value m.Running:  true
+debug 2026/01/17 08:30:44 
+
+ entered startstopmsg update
+debug 2026/01/17 08:30:44 
+mrunning: false	msgrunning: false
+debug 2026/01/17 08:30:46 value passed:  true
+debug 2026/01/17 08:30:46 current value m.Running:  true
+debug 2026/01/17 08:30:46 
+
+ entered startstopmsg update
+debug 2026/01/17 08:30:46 
+mrunning: true	msgrunning: true
+debug 2026/01/17 08:30:49 value passed:  false
+debug 2026/01/17 08:30:49 current value m.Running:  true
+debug 2026/01/17 08:30:49 
+
+ entered startstopmsg update
+debug 2026/01/17 08:30:49 
+mrunning: false	msgrunning: false
+debug 2026/01/17 08:30:50 value passed:  true
+debug 2026/01/17 08:30:50 current value m.Running:  true
+debug 2026/01/17 08:30:50 
+
+ entered startstopmsg update
+debug 2026/01/17 08:30:50 
+mrunning: true	msgrunning: true
+debug 2026/01/17 08:31:07 value passed:  true
+debug 2026/01/17 08:31:07 current value m.Running:  true
+debug 2026/01/17 08:31:07 
+
+ entered startstopmsg update
+debug 2026/01/17 08:31:07 
+mrunning: true	msgrunning: true
+debug 2026/01/17 08:31:13 value passed:  false
+debug 2026/01/17 08:31:13 current value m.Running:  true
+debug 2026/01/17 08:31:13 
+
+ entered startstopmsg update
+debug 2026/01/17 08:31:13 
+mrunning: false	msgrunning: false
+debug 2026/01/17 08:37:09 value passed:  true
+debug 2026/01/17 08:37:09 current value m.Running:  true
+debug 2026/01/17 08:37:09 
+
+ entered startstopmsg update
+debug 2026/01/17 08:37:09 
+mrunning: true	msgrunning: true
+debug 2026/01/17 08:37:13 value passed:  false
+debug 2026/01/17 08:37:13 current value m.Running:  true
+debug 2026/01/17 08:37:13 
+
+ entered startstopmsg update
+debug 2026/01/17 08:37:13 
+mrunning: false	msgrunning: false
+debug 2026/01/17 08:38:07 value passed:  true
+debug 2026/01/17 08:38:07 current value m.Running:  true
+debug 2026/01/17 08:38:07 
+
+ entered startstopmsg update
+debug 2026/01/17 08:38:07 
+mrunning: true	msgrunning: true
+debug 2026/01/17 08:38:22 value passed:  true
+debug 2026/01/17 08:38:22 current value m.Running:  true
+debug 2026/01/17 08:38:22 
+
+ entered startstopmsg update
+debug 2026/01/17 08:38:22 
+mrunning: true	msgrunning: true
+debug 2026/01/17 08:38:24 value passed:  false
+debug 2026/01/17 08:38:24 current value m.Running:  true
+debug 2026/01/17 08:38:24 
+
+ entered startstopmsg update
+debug 2026/01/17 08:38:24 
+mrunning: false	msgrunning: false
+debug 2026/01/17 08:41:40 value passed:  true
+debug 2026/01/17 08:41:40 current value m.Running:  true
+debug 2026/01/17 08:41:40 
+
+ entered startstopmsg update
+debug 2026/01/17 08:41:40 
+mrunning: true	msgrunning: true
+debug 2026/01/17 08:41:48 value passed:  false
+debug 2026/01/17 08:41:48 current value m.Running:  true
+debug 2026/01/17 08:41:48 
+
+ entered startstopmsg update
+debug 2026/01/17 08:41:48 
+mrunning: false	msgrunning: false
+debug 2026/01/17 08:41:52 value passed:  true
+debug 2026/01/17 08:41:52 current value m.Running:  true
+debug 2026/01/17 08:41:52 
+
+ entered startstopmsg update
+debug 2026/01/17 08:41:52 
+mrunning: true	msgrunning: true
+debug 2026/01/17 08:42:11 value passed:  true
+debug 2026/01/17 08:42:11 current value m.Running:  true
+debug 2026/01/17 08:42:11 
+
+ entered startstopmsg update
+debug 2026/01/17 08:42:11 
+mrunning: true	msgrunning: true
+debug 2026/01/17 10:44:39 value passed:  true
+debug 2026/01/17 10:44:39 current value m.Running:  true
+debug 2026/01/17 10:44:39 
+
+ entered startstopmsg update
+debug 2026/01/17 10:44:39 
+mrunning: true	msgrunning: true
+debug 2026/01/17 10:44:53 value passed:  false
+debug 2026/01/17 10:44:53 current value m.Running:  true
+debug 2026/01/17 10:44:53 
+
+ entered startstopmsg update
+debug 2026/01/17 10:44:53 
+mrunning: false	msgrunning: false
+debug 2026/01/17 10:45:01 value passed:  true
+debug 2026/01/17 10:45:01 current value m.Running:  true
+debug 2026/01/17 10:45:01 
+
+ entered startstopmsg update
+debug 2026/01/17 10:45:01 
+mrunning: true	msgrunning: true
+debug 2026/01/17 10:45:03 value passed:  false
+debug 2026/01/17 10:45:03 current value m.Running:  true
+debug 2026/01/17 10:45:03 
+
+ entered startstopmsg update
+debug 2026/01/17 10:45:03 
+mrunning: false	msgrunning: false
+debug 2026/01/17 10:46:36 value passed:  true
+debug 2026/01/17 10:46:36 current value m.Running:  true
+debug 2026/01/17 10:46:36 
+
+ entered startstopmsg update
+debug 2026/01/17 10:46:36 
+mrunning: true	msgrunning: true
+debug 2026/01/17 10:46:39 value passed:  false
+debug 2026/01/17 10:46:39 current value m.Running:  true
+debug 2026/01/17 10:46:39 
+
+ entered startstopmsg update
+debug 2026/01/17 10:46:39 
+mrunning: false	msgrunning: false
+debug 2026/01/17 10:46:41 value passed:  true
+debug 2026/01/17 10:46:41 current value m.Running:  true
+debug 2026/01/17 10:46:41 
+
+ entered startstopmsg update
+debug 2026/01/17 10:46:41 
+mrunning: true	msgrunning: true
+debug 2026/01/17 10:46:56 value passed:  false
+debug 2026/01/17 10:46:56 current value m.Running:  true
+debug 2026/01/17 10:46:56 
+
+ entered startstopmsg update
+debug 2026/01/17 10:46:56 
+mrunning: false	msgrunning: false
+debug 2026/01/17 10:48:19 value passed:  true
+debug 2026/01/17 10:48:19 current value m.Running:  true
+debug 2026/01/17 10:48:19 
+
+ entered startstopmsg update
+debug 2026/01/17 10:48:19 
+mrunning: true	msgrunning: true
+debug 2026/01/17 10:51:46 value passed:  true
+debug 2026/01/17 10:51:46 current value m.Running:  true
+debug 2026/01/17 10:51:46 
+
+ entered startstopmsg update
+debug 2026/01/17 10:51:46 
+mrunning: true	msgrunning: true
+debug 2026/01/17 10:51:46 value passed:  false
+debug 2026/01/17 10:51:46 current value m.Running:  true
+debug 2026/01/17 10:51:46 
+
+ entered startstopmsg update
+debug 2026/01/17 10:51:46 
+mrunning: false	msgrunning: false
+debug 2026/01/17 10:51:52 value passed:  true
+debug 2026/01/17 10:51:52 current value m.Running:  true
+debug 2026/01/17 10:51:52 
+
+ entered startstopmsg update
+debug 2026/01/17 10:51:52 
+mrunning: true	msgrunning: true
+debug 2026/01/17 10:52:04 value passed:  false
+debug 2026/01/17 10:52:04 current value m.Running:  true
+debug 2026/01/17 10:52:04 
+
+ entered startstopmsg update
+debug 2026/01/17 10:52:04 
+mrunning: false	msgrunning: false

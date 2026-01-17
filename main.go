@@ -57,7 +57,8 @@ const (
 type currentAction int
 
 const (
-	deleteTask currentAction = iota
+	null currentAction = iota
+	deleteTask
 	resetTimer
 )
 
@@ -144,7 +145,7 @@ func (m model) View() string {
 	if m.quitting {
 		return "quitting negetropy!"
 	}
-	s := fmt.Sprintf("\n\n\n\ntasks: %s\n\nActive Task ID: %d\n  %s\n\n  %s\n %s\n", m.tabs.View(), m.ActiveTaskId, m.StatusQuote, m.help, m.textInput.View())
+	s := fmt.Sprintf("\n\n\n\ntasks: %s\n\nActive Task ID: %d\n  %s\n\n  %s\n %s\n %s\n", m.tabs.View(), m.ActiveTaskId, m.StatusQuote, m.Timer.View(), m.help, m.textInput.View())
 	return s
 }
 
@@ -319,10 +320,19 @@ func (m model) updateTyping(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
 func (m model) updateConfirming(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
 	switch {
 	case key.Matches(msg, m.keymap.Exit):
-		return m, tea.Quit
+		if !m.Timer.Running {
+			return m, tea.Quit
+		}
 	case key.Matches(msg, m.keymap.No):
-		m.state = TimerNotRunning
-		m.StatusQuote = m.tasks[m.ActiveTaskId].Name
+		switch m.pendingAction {
+		case deleteTask:
+			m.state = TimerNotRunning
+			m.pendingAction = null
+		case resetTimer:
+			m.state = TimerRunning
+			m.pendingAction = null
+			m.StatusQuote = "continuing session..."
+		}
 		return m, nil
 	case key.Matches(msg, m.keymap.Yes):
 		switch m.pendingAction {
@@ -336,7 +346,8 @@ func (m model) updateConfirming(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
 			return m, m.tabs.DeleteSelectedTaskCmd()
 		case resetTimer:
 			m = m.ResetSession()
-			return m, nil
+			m.StatusQuote = "Added Entropy"
+			return m, m.Timer.StopCmd()
 
 		}
 	}
