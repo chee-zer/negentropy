@@ -1,11 +1,16 @@
 {
-  "start_stop_timer": [" ", "enter"],
-  "exit": ["q", "ctrl+c"],
-  "go_right": ["right", "l"],
-  "go_left": ["left", "h"],
-  "create_task": ["n"],
-  "delete_task": ["x"],
-  "reset_timer": ["r"],
-  "yes": ["y"],
-  "no": ["n"]
+  "keymap": {
+    "start_stop_timer": [" ", "enter"],
+    "exit": ["q", "ctrl+c"],
+    "go_right": ["right", "l"],
+    "go_left": ["left", "h"],
+    "create_task": ["n"],
+    "delete_task": ["x"],
+    "reset_timer": ["r"],
+    "yes": ["y"],
+    "no": ["n"]
+  },
+  "max_productivity_hours": 8,
+  "theme": "dark",
+  "enable_animations": false
 }

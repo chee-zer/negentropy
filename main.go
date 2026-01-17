@@ -62,7 +62,7 @@ const (
 	resetTimer
 )
 
-func NewModel(queries *db.Queries, cfg keymap, errs error) model {
+func NewModel(queries *db.Queries, cfg UserConfig, errs error) model {
 	taskMap, tasks, err := GetTaskMap(queries)
 	if err != nil {
 		log.Fatalf("couldn't not load tasks: %v", err)
@@ -94,7 +94,7 @@ func NewModel(queries *db.Queries, cfg keymap, errs error) model {
 		Timer:          dummyTimer,
 		CurrentSession: nil,
 		textInput:      ti,
-		keymap:         cfg,
+		keymap:         cfg.Keymap,
 		tabs:           tabs,
 		state:          TimerNotRunning,
 	}
@@ -131,7 +131,7 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		case TimerRunning:
 			return m.updateTimerRunning(msg)
 		case Typing:
-			// cursor will not blink cuz only keyMsg being passed
+			// WARN: cursor will not blink cuz only keyMsg being passed
 			return m.updateTyping(msg)
 		case Confirming:
 			return m.updateConfirming(msg)
@@ -360,7 +360,7 @@ func main() {
 		fmt.Println("fatal:", err)
 		os.Exit(1)
 	}
-	// err here wont terminate the app, infact the app will launch with default keybindings
+	// INFO: err here wont terminate the app, infact the app will launch with default keybindings
 	cfg, err := GetConfig("./neg.config.json")
 
 	defer f.Close()
