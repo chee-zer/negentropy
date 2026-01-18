@@ -6,6 +6,7 @@ package db
 
 import (
 	"context"
+	"database/sql"
 )
 
 type Querier interface {
@@ -14,6 +15,7 @@ type Querier interface {
 	EndSession(ctx context.Context, arg EndSessionParams) (Session, error)
 	EndSessionAsEntropy(ctx context.Context, arg EndSessionAsEntropyParams) (Session, error)
 	GetDailyTaskDurations(ctx context.Context, queryDate string) ([]GetDailyTaskDurationsRow, error)
+	GetHours(ctx context.Context) (sql.NullFloat64, error)
 	GetTasks(ctx context.Context) ([]Task, error)
 	StartSession(ctx context.Context, arg StartSessionParams) (Session, error)
 }

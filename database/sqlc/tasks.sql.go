@@ -45,6 +45,19 @@ func (q *Queries) DeleteTask(ctx context.Context, id int64) error {
 	return err
 }
 
+const getHours = `-- name: GetHours :one
+SELECT SUM(daily_target)
+FROM tasks
+WHERE daily_target != "ENTROPY"
+`
+
+func (q *Queries) GetHours(ctx context.Context) (sql.NullFloat64, error) {
+	row := q.db.QueryRowContext(ctx, getHours)
+	var sum sql.NullFloat64
+	err := row.Scan(&sum)
+	return sum, err
+}
+
 const getTasks = `-- name: GetTasks :many
 SELECT id, name, color_hex, completed, daily_target
 FROM tasks

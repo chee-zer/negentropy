@@ -8,6 +8,11 @@ SELECT *
 FROM tasks
 ORDER BY id;
 
+-- name: GetHours :one
+SELECT SUM(daily_target)
+FROM tasks
+WHERE daily_target != "ENTROPY";
+
 -- name: DeleteTask :exec
 DELETE FROM tasks
 WHERE id = ?;
